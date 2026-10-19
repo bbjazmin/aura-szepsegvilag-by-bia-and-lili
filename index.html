@@ -606,27 +606,36 @@
 
                 <h2 class="text-3xl sm:text-4xl font-serif font-bold text-aura-dark">Aura Webshop</h2>
 
-                <p class="text-gray-600 text-sm mt-2">Vásárolj otthoni szépségápolási, műkörmös és műszempillás termékeket!</p>
+                <p class="text-gray-600 text-sm mt-2">Kedvenc szépségápolási márkáid, arcápolás, smink és professzionális kellékek egy helyen.</p>
 
-                <!-- Category Filter -->
-
-                <div class="flex justify-center flex-wrap gap-2 mt-6">
-
-                    <button onclick="filterShop('all', this)" class="shop-filter-btn active bg-aura-600 text-white px-5 py-2 rounded-full text-sm font-medium transition">Összes</button>
-
-                    <button onclick="filterShop('szepseg', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Szépségápolás</button>
-
-                    <button onclick="filterShop('korom', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Műkörmös</button>
-
-                    <button onclick="filterShop('pilla', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Műszempilla</button>
-
+                <div class="shop-promo-strip mt-7">
+                    <div><span class="shop-promo-kicker">AURA BEAUTY DAYS</span><strong>Apró szépségrituálék, nagy ragyogás</strong><p>Fedezd fel a bőrápolás és a szépségápolás kedvenceit!</p></div>
+                    <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
                 </div>
+
+                <div class="shop-tools mt-7">
+                    <label class="shop-search"><i class="fa-solid fa-magnifying-glass"></i><input id="shop-search" type="search" placeholder="Keress terméket vagy márkát..." oninput="renderShop()" aria-label="Termék keresése"></label>
+                    <label class="shop-sort-label">Rendezés
+                        <select id="shop-sort" onchange="renderShop()" aria-label="Termékek rendezése"><option value="popular">Népszerűség szerint</option><option value="price-low">Ár szerint növekvő</option><option value="price-high">Ár szerint csökkenő</option><option value="name">Név szerint</option></select>
+                    </label>
+                </div>
+
+                <!-- Kategóriák -->
+                <div class="shop-category-row mt-6">
+                    <button onclick="filterShop('all', this)" class="shop-filter-btn active bg-aura-600 text-white px-5 py-2 rounded-full text-sm font-medium transition">Összes termék</button>
+                    <button onclick="filterShop('szepseg', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Arc- és testápolás</button>
+                    <button onclick="filterShop('smink', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Smink</button>
+                    <button onclick="filterShop('haj', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Hajápolás</button>
+                    <button onclick="filterShop('korom', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Köröm</button>
+                    <button onclick="filterShop('pilla', this)" class="shop-filter-btn bg-white text-gray-700 border border-gray-200 px-5 py-2 rounded-full text-sm font-medium hover:bg-aura-50 transition">Szempilla</button>
+                </div>
+                <p id="shop-results-count" class="shop-results-count" aria-live="polite"></p>
 
             </div>
 
             <!-- Products Grid -->
 
-            <div id="shop-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="shop-products-grid" class="shop-products-grid grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
                 <!-- Injected via JavaScript -->
 
