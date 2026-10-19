@@ -1,31 +1,234 @@
+/* Az összes elem méretezése kiszámíthatóbb legyen */
+* {
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff8fc;
+    color: #352334;
+}
 
-            font-family: 'Inter', sans-serif;
+header {
+    padding: 18px 5%;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    border-bottom: 1px solid #eadce7;
+}
 
-            background-color: #fef6fa;
+header h1 {
+    color: #a12d77;
+    font-size: 25px;
+}
 
-            color: #2a1222;
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
 
-        }
+nav a {
+    color: #493447;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .page-view {
+nav a:hover {
+    color: #b33383;
+}
 
-            display: none;
+button {
+    cursor: pointer;
+    border-radius: 7px;
+    padding: 10px 14px;
+}
 
-        }
+.reklam {
+    width: 90%;
+    margin: 25px auto;
+    padding: 40px 20px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(120deg, #7e205c, #d96cae);
+}
 
-        .page-view.active {
+main {
+    width: 90%;
+    max-width: 1400px;
+    margin: 35px auto;
+}
 
-            display: block;
+.kereses-sor, .kategoriak {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
-            animation: fadeIn 0.4s ease-in-out forwards;
+input, select {
+    padding: 12px;
+    border: 1px solid #d9bfd1;
+    border-radius: 8px;
+    background: white;
+}
 
-        }
+#kereso {
+    flex: 1;
+    min-width: 200px;
+}
 
-        @keyframes fadeIn {
+.kategoria-gomb {
+    color: #84205e;
+    background: white;
+    border: 1px solid #d9bfd1;
+}
 
-            from { opacity: 0; transform: translateY(8px); }
+.kategoria-gomb:hover, .kategoria-gomb.aktiv {
+    color: white;
+    background: #a12d77;
+}
 
-            to { opacity: 1; transform: translateY(0); }
+.termekek {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
 
-        }
+.termek-kartya {
+    overflow: hidden;
+    border: 1px solid #efdfeb;
+    border-radius: 12px;
+    background: white;
+    transition: 0.2s;
+}
+
+.termek-kartya:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px #60204b18;
+}
+
+.termek-kep {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    background: #f6eaf2;
+}
+
+.termek-adatok {
+    padding: 15px;
+}
+
+.marka {
+    color: #8a7184;
+    font-size: 13px;
+}
+
+.termek-nev {
+    min-height: 42px;
+    font-size: 17px;
+}
+
+.ertekeles {
+    color: #d69a22;
+    font-size: 14px;
+}
+
+.ar {
+    color: #a12d77;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 14px 0;
+}
+
+.kosarba {
+    width: 100%;
+    color: white;
+    background: #a12d77;
+    border: none;
+    font-weight: bold;
+}
+
+.kosarba:hover {
+    background: #7e205c;
+}
+
+.kedvenc {
+    width: 100%;
+    margin-top: 8px;
+    color: #a12d77;
+    background: white;
+    border: 1px solid #d9bfd1;
+}
+
+.akcio {
+    display: inline-block;
+    padding: 5px 8px;
+    margin: 10px 10px 0;
+    border-radius: 5px;
+    color: white;
+    background: #b62b70;
+    font-size: 12px;
+}
+
+#kosar-resz {
+    display: none;
+    margin-top: 30px;
+    padding: 22px;
+    border: 1px solid #eadce7;
+    border-radius: 12px;
+    background: white;
+}
+
+.kosar-sor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.torles-gomb {
+    background: #f6e5f0;
+    color: #84205e;
+    border: none;
+}
+
+#uzenet {
+    display: none;
+    padding: 12px;
+    margin: 15px 0;
+    color: #84205e;
+    background: #f5e2ef;
+    border-radius: 8px;
+}
+
+footer {
+    margin-top: 60px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    background: #43223c;
+}
+
+@media (max-width: 600px) {
+    .reklam h2 {
+        font-size: 25px;
+    }
+
+    header {
+        justify-content: center;
+    }
+
+    .termek-kep {
+        height: 190px;
+    }
+}
