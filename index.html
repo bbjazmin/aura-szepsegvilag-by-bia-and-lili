@@ -78,7 +78,29 @@
                 <button onclick="kategoriaSzures('Parfüm')" class="kat-btn">Parfüm</button>
             </div>
 
-            <div class="marka-szuro"><h3>Márkák</h3><div id="marka-gombok" class="marka-gombok"></div></div>
+            <div class="marka-szuro">
+                <label for="marka-select">Márka kiválasztása</label>
+                <select id="marka-select" onchange="markaSzures(this.value)">
+                    <option value="Mind">Minden márka</option>
+                    <option value="Ariana Grande">Ariana Grande</option>
+                    <option value="CeraVe">CeraVe</option>
+                    <option value="Dove">Dove</option>
+                    <option value="Essence">Essence</option>
+                    <option value="essie">essie</option>
+                    <option value="Garnier">Garnier</option>
+                    <option value="Garnier Fructis">Garnier Fructis</option>
+                    <option value="L'Oréal Paris">L'Oréal Paris</option>
+                    <option value="L'Oréal Paris Elseve">L'Oréal Paris Elseve</option>
+                    <option value="Maybelline">Maybelline</option>
+                    <option value="Neutrogena">Neutrogena</option>
+                    <option value="NIVEA">NIVEA</option>
+                    <option value="OGX">OGX</option>
+                    <option value="Sally Hansen">Sally Hansen</option>
+                    <option value="Sol de Janeiro">Sol de Janeiro</option>
+                    <option value="The Ordinary">The Ordinary</option>
+                    <option value="ZARA">ZARA</option>
+                </select>
+            </div>
             <p id="talalatok-szama" class="results-count"></p>
             <div id="termek-grid" class="termek-grid"></div>
         </section>
