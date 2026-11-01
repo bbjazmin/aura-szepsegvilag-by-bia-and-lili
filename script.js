@@ -235,7 +235,6 @@ function navigalj(viewName) {
 // Katalógus frissítése, szűrése és rendezése
 function katalogusFrissitese() {
     const grid = document.getElementById("termek-grid");
-    markakGombokFrissitese();
     const kereses = document.getElementById("kereso-input").value.toLowerCase();
     const rendezes = document.getElementById("rendezes-select").value;
 
@@ -274,34 +273,21 @@ function katalogusFrissitese() {
 }
 
 // Márka szerinti szűrés
-function markakGombokFrissitese() {
-    const tarolo = document.getElementById('marka-gombok');
-    if (!tarolo) return;
-    const markak = [...new Set(termekek.map(t => t.marka))].sort((a, b) => a.localeCompare(b, 'hu'));
-    tarolo.innerHTML = '';
-    const minden = document.createElement('button');
-    minden.className = 'marka-btn' + (kivalasztottMarka === 'Mind' ? ' aktiv' : '');
-    minden.textContent = 'Minden márka';
-    minden.onclick = () => markaSzures('Mind');
-    tarolo.appendChild(minden);
-    markak.forEach(marka => {
-        const gomb = document.createElement('button');
-        gomb.className = 'marka-btn' + (kivalasztottMarka === marka ? ' aktiv' : '');
-        gomb.textContent = marka;
-        gomb.onclick = () => markaSzures(marka);
-        tarolo.appendChild(gomb);
-    });
-}
-
 function markaSzures(marka) {
     kivalasztottMarka = marka;
-    kivalasztottKategoria = 'Mind';
-    document.querySelectorAll('.kat-btn').forEach(btn => btn.classList.remove('aktiv'));
-    const elsoGomb = document.querySelector('.kat-btn');
-    if (elsoGomb) elsoGomb.classList.add('aktiv');
-    navigalj('katalogus');
+    kivalasztottKategoria = "Mind";
+
+    const markaValaszto = document.getElementById("marka-select");
+    if (markaValaszto) markaValaszto.value = marka;
+
+    document.querySelectorAll(".kat-btn").forEach(btn => btn.classList.remove("aktiv"));
+    const elsoGomb = document.querySelector(".kat-btn");
+    if (elsoGomb) elsoGomb.classList.add("aktiv");
+
+    navigalj("katalogus");
     katalogusFrissitese();
 }
+
 // Kategória szűrés
 function kategoriaSzures(kat) {
     kivalasztottKategoria = kat;
