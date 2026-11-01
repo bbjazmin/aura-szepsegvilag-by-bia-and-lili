@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
+    <!-- Alapvető meta tagek a karakterkódoláshoz és reszponzív nézethez -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Szépségvilág</title>
+    <!-- Külső CSS stíluslap csatolása -->
     <link rel="stylesheet" href="style.css">
+    <!-- Külső JavaScript fájl betöltése (defer: a DOM felépülése után fut le) -->
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- Fejléc (Header): logó, navigáció és kosár gomb -->
     <header>
         <h1>Aura Szépségvilág</h1>
         <nav>
@@ -15,16 +19,25 @@
             <a href="#webshop">Webshop</a>
             <a href="#kapcsolat">Kapcsolat</a>
         </nav>
+        <!-- Kosár gomb, ami megnyitja a kosár nézetet és dinamikusan mutatja a darabszámot -->
         <button onclick="kosarMegnyitasa()">Kosár (<span id="kosar-darab">0</span>)</button>
     </header>
+
+    <!-- Főoldali kiemelt reklám/banner szekció -->
     <section class="reklam" id="fooldal">
         <h2>Fedezd fel a szépséged!</h2>
         <p>Arcápolás, smink és hajápolás egy helyen.</p>
     </section>
+
+    <!-- Fő tartalom (Main): webshop funkciók -->
     <main id="webshop">
         <h2>Szépségápolási termékek</h2>
+        
+        <!-- Keresés és rendezés vezérlői -->
         <div class="kereses-sor">
+            <!-- oninput eseménykezelő: gépelésre azonnal szűri a termékeket -->
             <input id="kereso" type="text" placeholder="Keress terméket vagy márkát..." oninput="termekekMegjelenitese()">
+            <!-- onchange eseménykezelő: rendezési feltétel változásakor lefut -->
             <select id="rendezes" onchange="termekekMegjelenitese()">
                 <option value="alap">Alapértelmezett sorrend</option>
                 <option value="olcso">Ár szerint növekvő</option>
@@ -32,6 +45,8 @@
                 <option value="nev">Név szerint</option>
             </select>
         </div>
+
+        <!-- Kategória szűrő gombok -->
         <div class="kategoriak">
             <button class="kategoria-gomb aktiv" onclick="kategoriaValasztas('Mind', this)">Összes</button>
             <button class="kategoria-gomb" onclick="kategoriaValasztas('Arcápolás', this)">Arcápolás</button>
@@ -40,16 +55,26 @@
             <button class="kategoria-gomb" onclick="kategoriaValasztas('Testápolás', this)">Testápolás</button>
             <button class="kategoria-gomb" onclick="kategoriaValasztas('Köröm', this)">Köröm</button>
         </div>
+
+        <!-- Dinamikus találati szám kiírása -->
         <p id="talalatok"></p>
+
+        <!-- Ide generálja a JS a termékkártyákat -->
         <div class="termekek" id="termek-lista"></div>
+
+        <!-- Kosár részlet (alapból rejtett, JS nyitja meg) -->
         <section id="kosar-resz">
             <h2>A kosarad</h2>
             <div id="kosar-tartalom"></div>
             <h3 id="vegosszeg">Végösszeg: 0 Ft</h3>
             <button onclick="kosarUritese()">Kosár ürítése</button>
         </section>
+
+        <!-- Visszajelző üzenetek helye -->
         <p id="uzenet"></p>
     </main>
+
+    <!-- Lábléc (Footer): kapcsolat és copyright -->
     <footer id="kapcsolat">
         <h2>Aura Szépségvilág</h2>
         <p>Kapcsolat: aura.szepsegvilag@gmail.com</p>
