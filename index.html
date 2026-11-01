@@ -67,17 +67,6 @@
                 </select>
             </div>
 
-            <!-- Kategória gombok -->
-            <div class="kategoriak-container" id="kategoria-gombok">
-                <button onclick="kategoriaSzures('Mind')" class="kat-btn aktiv">Összes termék</button>
-                <button onclick="kategoriaSzures('Arcápolás')" class="kat-btn">Arcápolás</button>
-                <button onclick="kategoriaSzures('Smink')" class="kat-btn">Smink</button>
-                <button onclick="kategoriaSzures('Hajápolás')" class="kat-btn">Hajápolás</button>
-                <button onclick="kategoriaSzures('Testápolás')" class="kat-btn">Testápolás</button>
-                <button onclick="kategoriaSzures('Köröm')" class="kat-btn">Köröm</button>
-                <button onclick="kategoriaSzures('Parfüm')" class="kat-btn">Parfüm</button>
-            </div>
-
             <div class="marka-szuro">
                 <label for="marka-select">Márka kiválasztása</label>
                 <select id="marka-select" onchange="markaSzures(this.value)">
@@ -101,6 +90,18 @@
                     <option value="ZARA">ZARA</option>
                 </select>
             </div>
+
+            <!-- Kategória gombok -->
+            <div class="kategoriak-container" id="kategoria-gombok">
+                <button onclick="kategoriaSzures('Mind')" class="kat-btn aktiv">Összes termék</button>
+                <button onclick="kategoriaSzures('Arcápolás')" class="kat-btn">Arcápolás</button>
+                <button onclick="kategoriaSzures('Smink')" class="kat-btn">Smink</button>
+                <button onclick="kategoriaSzures('Hajápolás')" class="kat-btn">Hajápolás</button>
+                <button onclick="kategoriaSzures('Testápolás')" class="kat-btn">Testápolás</button>
+                <button onclick="kategoriaSzures('Köröm')" class="kat-btn">Köröm</button>
+                <button onclick="kategoriaSzures('Parfüm')" class="kat-btn">Parfüm</button>
+            </div>
+
             <p id="talalatok-szama" class="results-count"></p>
             <div id="termek-grid" class="termek-grid"></div>
         </section>
