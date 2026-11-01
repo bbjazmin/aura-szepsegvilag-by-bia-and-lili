@@ -8,11 +8,11 @@ const termekek = [
         "marka": "CeraVe",
         "ar": 4290,
         "kategoria": "Arcápolás",
-        "kep": "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=700",
+        "kep": "https://g-image.beautyamora.com/BSCFCVE00004/BSCFCVE00004-001-20240306.jpg",
         "akcio": false,
-        "leiras": "Gyengéd tisztítás a mindennapi arcápoláshoz.",
-        "leirasBovebb": "Kíméletes arctisztító, amely segít eltávolítani a napi szennyeződéseket, miközben támogatja a bőr komfortérzetét.",
-        "használat": "Nedves bőrön habosítsd fel, majd alaposan öblítsd le."
+        "leiras": "Krémes, gyengéd arctisztító normál és száraz bőrre, amely tisztítás közben a hidratáltság megőrzésére is figyel.",
+        "leirasBovebb": "A CeraVe Hidratáló Arctisztító mindennapi használatra készült, különösen normál és száraz bőrre. Krémes, nem habzó állaga segít eltávolítani a szennyeződéseket anélkül, hogy a bőr tisztítás után kellemetlenül feszülő érzetű lenne. Ceramidokat és hialuronsavat tartalmazó formulája támogatja a bőr természetes védőrétegét és nedvességtartalmát. Arcra és testre is használható, így praktikus része lehet a napi bőrápolási rutinnak.",
+        "használat": "Nedvesítsd be az arcod, gyengéden masszírozd a bőrbe a tisztítót, majd langyos vízzel öblítsd le. Kerüld a szem közvetlen környékét."
     },
     {
         "id": 2,
@@ -20,11 +20,11 @@ const termekek = [
         "marka": "The Ordinary",
         "ar": 5490,
         "kategoria": "Arcápolás",
-        "kep": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700",
+        "kep": "https://static.thcdn.com/productimg/original/14706551-2035064073540467.jpg",
         "akcio": true,
-        "leiras": "Könnyű szérum a hidratált, puha bőrért.",
-        "leirasBovebb": "Hialuronsavat tartalmazó arcszérum, amely segít megőrizni a bőr nedvességtartalmát és rugalmas érzetét.",
-        "használat": "Néhány cseppet vigyél fel tiszta, enyhén nedves arcbőrre, majd használd a hidratálókrémedet."
+        "leiras": "Hialuronsavas arcszérum B5-provitaminnal a bőr hidratáltságának támogatására.",
+        "leirasBovebb": "A The Ordinary Hyaluronic Acid 2% + B5 könnyű, vízbázisú szérum, amely többféle hialuronsav-formát és B5-provitamint tartalmaz. A hialuronsav segít megkötni a nedvességet, így a bőr hidratáltabbnak és teltebbnek tűnhet. Egyszerűen beilleszthető a reggeli vagy esti arcápolási rutinba, hidratálókrém alá rétegezve. Letisztult összetételű, könnyen kombinálható termék a mindennapi bőrápoláshoz.",
+        "használat": "Tiszta, enyhén nedves bőrre vigyél fel néhány cseppet, finoman oszlasd el, majd használj hidratálókrémet. Ha irritációt tapasztalsz, hagyd abba a használatát."
     },
     {
         "id": 3,
@@ -32,11 +32,11 @@ const termekek = [
         "marka": "Garnier",
         "ar": 2690,
         "kategoria": "Arcápolás",
-        "kep": "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=700",
+        "kep": "https://cdn11.bigcommerce.com/s-3pw1lrwx2n/images/stencil/1280x1280/products/9109/12068/603084454501__47583.1716535805.jpg?c=1",
         "akcio": false,
-        "leiras": "Sminkeltávolítás egyszerűen és kíméletesen.",
-        "leirasBovebb": "Micellás arctisztító a napi szennyeződések és a smink eltávolításához. Praktikus része lehet az esti arcápolási rutinnak.",
-        "használat": "Itass át vele egy vattakorongot, majd gyengéden töröld át az arcot."
+        "leiras": "Micellás arctisztító víz, amely segít eltávolítani a sminket és a napi szennyeződéseket.",
+        "leirasBovebb": "A Garnier SkinActive Micellás Arctisztító Víz praktikus megoldás a napi arctisztításhoz és sminkeltávolításhoz. Micellái segítenek magukhoz vonzani a bőrön lévő szennyeződéseket és a sminkmaradványokat, így nincs szükség erős dörzsölésre. A klasszikus, rózsaszín kupakos változat érzékeny bőrre is készült. Használható az arc, az ajkak és a szem környékének tisztítására, a szemmel való közvetlen érintkezést kerülve.",
+        "használat": "Önts egy keveset vattakorongra, majd finoman töröld át vele az arcot. A szem környékén óvatosan használd, és ha szükséges, öblítsd le."
     },
     {
         "id": 4,
@@ -44,11 +44,11 @@ const termekek = [
         "marka": "Maybelline",
         "ar": 4990,
         "kategoria": "Smink",
-        "kep": "https://images.unsplash.com/photo-1631214540242-5a2b3d2c2e1b?w=700",
+        "kep": "https://licilasicdn.s3.amazonaws.com/public/product_images/43863/gallery/original/932618297.jpg",
         "akcio": true,
-        "leiras": "Hosszabbnak és hangsúlyosabbnak látszó pillák.",
-        "leirasBovebb": "A Sky High szempillaspirál rugalmas keféje segít a pillák szétválasztásában és látványos kiemelésében.",
-        "használat": "A pillák tövétől a végek felé haladva, finom mozdulatokkal vidd fel."
+        "leiras": "A Sky High spirál segít látványosan kiemelni és szétválasztani a szempillákat.",
+        "leirasBovebb": "A Maybelline Lash Sensational Sky High szempillaspirál jellegzetes, rózsaszín tubusáról és rugalmas keféjéről ismert. A kialakítás célja, hogy a rövidebb pillákat is könnyebben elérje, miközben hosszabbnak és hangsúlyosabbnak látszó pillasort készíthetsz vele. Rétegezhető, ezért visszafogottabb nappali vagy erőteljesebb sminkhez is használható. A végeredmény a felvitt rétegek számától és a természetes pilláktól is függ.",
+        "használat": "A kefét a pillák tövétől a végek felé húzd végig. Ha erősebb hatást szeretnél, az első réteg száradása után vigyél fel még egy vékony réteget."
     },
     {
         "id": 5,
@@ -56,11 +56,11 @@ const termekek = [
         "marka": "L'Oréal Paris",
         "ar": 5490,
         "kategoria": "Smink",
-        "kep": "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=700",
+        "kep": "https://lilidrogerie.gr/image/cache/catalog/product-upload/3600522862406_1-700x700.jpg",
         "akcio": false,
-        "leiras": "Természetes hatású, egyenletes fedés.",
-        "leirasBovebb": "Könnyed folyékony alapozó, amely segít egységesíteni az arcbőr megjelenését. Több árnyalatban elérhető.",
-        "használat": "Kis mennyiséget oszlass el az arcon ecsettel, szivaccsal vagy tiszta ujjakkal."
+        "leiras": "Folyékony alapozó természetes hatású fedéssel, többféle árnyalatban.",
+        "leirasBovebb": "A L'Oréal Paris True Match alapozó a természetes hatású, egységes arcbőr megjelenését segíti. Folyékony állaga könnyen eldolgozható, ezért ecsettel, sminkszivaccsal vagy tiszta ujjakkal is felvihető. A termékcsalád több árnyalatban érhető el, így fontos a bőrtónushoz leginkább illő változat kiválasztása. Mindennapi sminkhez és alkalmi megjelenéshez is jól beilleszthető.",
+        "használat": "Kis mennyiséget tegyél az arc közepére, majd egyenletesen dolgozd el kifelé haladva. A megfelelő árnyalatot természetes fényben érdemes kiválasztani."
     },
     {
         "id": 6,
@@ -68,11 +68,11 @@ const termekek = [
         "marka": "Essence",
         "ar": 1790,
         "kategoria": "Smink",
-        "kep": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=700",
+        "kep": "https://s13emagst.akamaized.net/products/78271/78270117/images/res_dcc7775a74ac87f474c987132d2bbbeb.jpg",
         "akcio": false,
-        "leiras": "Ragyogó fény és kellemes viselet az ajkakon.",
-        "leirasBovebb": "Könnyed ajakolaj, amely fényes megjelenést kölcsönöz az ajkaknak, és önmagában vagy rúzs fölött is használható.",
-        "használat": "Az applikátorral egyenletesen vidd fel az ajkakra."
+        "leiras": "Fényes, enyhén színezett ajakolaj a ragyogó ajkakért.",
+        "leirasBovebb": "Az Essence Hydra Kiss Lip Oil könnyed ajakápoló, amely fényes megjelenést ad az ajkaknak. Átlátszó, rózsaszínes csomagolása és praktikus applikátora miatt a táskában is könnyen elfér. Önmagában természetes hatású, fényes ajaksminkként viselhető, de rúzs fölé is felvihető. Ideális választás, ha egy gyorsan használható, ragyogó finishű ajakterméket keresel.",
+        "használat": "Az applikátorral vigyél fel egy vékony réteget az ajkakra. Használat előtt és után zárd vissza gondosan a kupakot."
     },
     {
         "id": 7,
@@ -80,11 +80,11 @@ const termekek = [
         "marka": "Garnier Fructis",
         "ar": 3490,
         "kategoria": "Hajápolás",
-        "kep": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=700",
+        "kep": "https://www.hebe.com/on/demandware.static/-/Sites-PL_Master_Catalog/default/dwbc7dc32a/images/hi-res/485681_maska_na_poskozene_vlasy_400_ml__1_9705560_p.png",
         "akcio": true,
-        "leiras": "Tápláló hajpakolás száraz, igénybevett hajra.",
-        "leirasBovebb": "Papayás hajpakolás, amely segít puhábbá és könnyebben kezelhetővé tenni a haj hosszát.",
-        "használat": "Hajmosás után oszlasd el a hajhosszon, hagyd hatni a csomagoláson jelzett ideig, majd öblítsd le."
+        "leiras": "Papayás hajpakolás, amely segít ápolni a száraz, igénybevett hajhosszt.",
+        "leirasBovebb": "A Garnier Fructis Hair Food Papaya hajpakolás a száraz és sérültnek tűnő haj ápolására készült. Krémes állaga könnyen eloszlatható a hajhosszon, papayás illata pedig kellemesebbé teszi a hajápolási rutint. Hajpakolásként használva segít puhább tapintásúvá és könnyebben kifésülhetővé tenni a tincseket. A termékcsalád többféle módon is használható, ezért mindig igazodj a csomagoláson feltüntetett útmutatóhoz.",
+        "használat": "Hajmosás után oszlasd el a nedves hajhosszon, hagyd hatni a csomagoláson jelzett ideig, majd alaposan öblítsd le. A hajtövekre csak akkor vidd fel, ha a termék útmutatója ezt javasolja."
     },
     {
         "id": 8,
@@ -92,11 +92,11 @@ const termekek = [
         "marka": "L'Oréal Paris Elseve",
         "ar": 4290,
         "kategoria": "Hajápolás",
-        "kep": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=700",
+        "kep": "https://cdn.dmart.in/images/products/JUL140003752xx3JUL23_5_B.jpg",
         "akcio": false,
-        "leiras": "Fényesebb, selymesebb tapintású hajért.",
-        "leirasBovebb": "Könnyű hajápoló olaj, amely segít megszelídíteni a szálló hajszálakat és ápoltabb megjelenést adni a hajvégeknek.",
-        "használat": "Kis mennyiséget dolgozz el a tenyeredben, majd simítsd a hajhosszra és a hajvégekre."
+        "leiras": "Tápláló hajolaj, amely fényesebb és simább hatást adhat a hajhossznak.",
+        "leirasBovebb": "A L'Oréal Paris Elseve Extraordinary Oil hajápoló olaj a haj puhaságának és fényének fokozására szolgál. Könnyű, olajos textúrája segít lesimítani a szálló hajszálakat, és ápoltabb megjelenést adhat a hajvégeknek. Kis mennyiség is elegendő lehet, ezért érdemes fokozatosan adagolni. Hajmosás után vagy száraz hajon is használható a termék saját útmutatójának megfelelően.",
+        "használat": "Kis mennyiséget dörzsölj el a tenyeredben, majd oszlasd el a hajhosszon és a hajvégeken. Kerüld a túlzott mennyiséget, hogy a haj ne nehezedjen el."
     },
     {
         "id": 9,
@@ -104,11 +104,11 @@ const termekek = [
         "marka": "OGX",
         "ar": 3990,
         "kategoria": "Hajápolás",
-        "kep": "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=700",
+        "kep": "https://imgwlns.gumlet.io/images/products/367114-1.jpg",
         "akcio": false,
-        "leiras": "Kíméletes hajtisztítás ápoló összetevőkkel.",
-        "leirasBovebb": "Argánolajjal készült sampon, amely tisztítja a hajat, és segít puhább tapintásúvá tenni.",
-        "használat": "Vidd fel a nedves hajra, habosítsd fel, majd alaposan öblítsd ki."
+        "leiras": "Argánolajos sampon a haj tisztítására és puhább tapintásáért.",
+        "leirasBovebb": "Az OGX Argan Oil of Morocco sampon jellegzetes türkiz flakonban kapható hajápoló termék. Argánolajat tartalmazó formulája a haj tisztítására készült, miközben segíthet puhább, fényesebb érzetet adni a hajnak. A sampon a rendszeres hajmosási rutin részeként használható, különösen akkor, ha a hajadnak extra ápolásra van szüksége. A hajápolás eredménye hajtípustól és a használt termékek kombinációjától is függ.",
+        "használat": "Nedves hajra vigyél fel megfelelő mennyiséget, gyengéden habosítsd fel a fejbőrön, majd alaposan öblítsd ki. Szükség esetén ismételd meg."
     },
     {
         "id": 10,
@@ -116,11 +116,11 @@ const termekek = [
         "marka": "NIVEA",
         "ar": 2490,
         "kategoria": "Testápolás",
-        "kep": "https://images.unsplash.com/photo-1601612628452-9e99ced43524?w=700",
+        "kep": "https://pwa-api.eva.ua/img/512/512/resize/3/5/358471_1_1753278237.jpg",
         "akcio": true,
-        "leiras": "Mindennapi hidratálás a száraz bőr ápolására.",
-        "leirasBovebb": "Gazdag állagú testápoló, amely segít puhává és komfortossá tenni a száraz bőrt.",
-        "használat": "Fürdés vagy zuhanyzás után masszírozd be a tiszta, száraz bőrbe."
+        "leiras": "Gazdag testápoló a száraz bőr mindennapi hidratálásához.",
+        "leirasBovebb": "A NIVEA Repair & Care testápoló a száraz és nagyon száraz bőr mindennapi ápolására készült. Krémes állaga könnyen eloszlatható, és segít csökkenteni a bőr száraz, húzódó érzetét. A termékcsalád hidratáló összetevőket, többek között glicerint és panthenolt tartalmazó változatokkal érhető el. Rendszeres használata kellemesen puhává teheti a bőrt.",
+        "használat": "Zuhanyzás vagy fürdés után, tiszta és száraz bőrre vidd fel. Gyengéd, körkörös mozdulatokkal masszírozd be, amíg eloszlik."
     },
     {
         "id": 11,
@@ -128,11 +128,11 @@ const termekek = [
         "marka": "Neutrogena",
         "ar": 1990,
         "kategoria": "Testápolás",
-        "kep": "https://images.unsplash.com/photo-1617897903246-719242758050?w=700",
+        "kep": "https://images.ctfassets.net/hziwb47cmkp3/4Jbp7DfUYiLZcIajWRk8be/41c9507fffe13a5ac0d3b7b42ff6be77/NTG_070501013007_US_NF_Hand_Cream_Fragrance_Free_2OZ_OOB1_600Wx600H.JPEG",
         "akcio": false,
-        "leiras": "Ápolás a száraz, igénybevett kezeknek.",
-        "leirasBovebb": "Koncentrált kézkrém, amelyből már kis mennyiség is elegendő a kézfej és az ujjak ápolásához.",
-        "használat": "Egy kis mennyiséget masszírozz a tiszta kéz bőrébe, szükség szerint ismételd."
+        "leiras": "Koncentrált, glicerines kézkrém a száraz kézfej mindennapi ápolására.",
+        "leirasBovebb": "A Neutrogena Norwegian Formula kézkrém koncentrált állagú, ezért már kis mennyiség is elegendő lehet belőle. Glicerint tartalmazó formulája segít ápolni a száraz, igénybevett kézbőrt, a bemutatott változat illatmentes. Praktikus kiszerelése könnyen elfér a táskában, így napközben is kéznél lehet. Különösen hasznos lehet gyakori kézmosás után, amikor a kéz bőre száraznak érződik.",
+        "használat": "Egy kis mennyiséget oszlass el a kézfejen és az ujjakon, majd masszírozd be. Szükség szerint, kézmosás után is újra használhatod."
     },
     {
         "id": 12,
@@ -140,11 +140,11 @@ const termekek = [
         "marka": "Dove",
         "ar": 1790,
         "kategoria": "Testápolás",
-        "kep": "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=700",
+        "kep": "https://fr.britishessentials.com/cdn/shop/products/DoveDeeplyNourishingBodyWash720ml_1024x1024.jpg?v=1673245548",
         "akcio": false,
-        "leiras": "Krémes tusfürdő a mindennapi tisztálkodáshoz.",
-        "leirasBovebb": "Krémes állagú tusfürdő, amely kellemesen tisztítja a bőrt, és puha érzetet hagy maga után.",
-        "használat": "Nedves bőrön habosítsd fel, majd öblítsd le."
+        "leiras": "Krémes Dove tusfürdő a mindennapi tisztálkodáshoz és bőrápoláshoz.",
+        "leirasBovebb": "A Dove Deeply Nourishing krémtusfürdő selymes, krémes állagú termék a mindennapi zuhanyzáshoz. A formula tisztítja a bőrt, miközben segít megőrizni annak puha, komfortos érzetét. A Dove jellegzetes, letisztult csomagolása könnyen felismerhető, a nagyobb flakon pedig praktikus otthoni használatra. Kellemes választás lehet azoknak, akik a hagyományos tusfürdőknél krémesebb textúrát kedvelik.",
+        "használat": "Nedves bőrre vagy fürdőszivacsra tegyél egy kis mennyiséget, habosítsd fel, majd alaposan öblítsd le."
     },
     {
         "id": 13,
@@ -152,11 +152,11 @@ const termekek = [
         "marka": "essie",
         "ar": 3290,
         "kategoria": "Köröm",
-        "kep": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=700",
+        "kep": "https://media.ulta.com/i/ulta/2077627?fmt=auto&h=800&w=800",
         "akcio": true,
-        "leiras": "Finom, halvány rózsaszín árnyalat.",
-        "leirasBovebb": "Elegáns, visszafogott körömlakkárnyalat, amely jól illik a letisztult, természetes hatású manikűrhöz.",
-        "használat": "Tiszta, száraz körömre vigyél fel egy vagy két vékony réteget."
+        "leiras": "Halvány, elegáns rózsaszín körömlakk a letisztult manikűrhöz.",
+        "leirasBovebb": "Az essie Ballet Slippers az egyik legismertebb halvány rózsaszín árnyalat, amely finom, visszafogott megjelenést ad a körmöknek. A világos szín önmagában is szép, több vékony rétegben pedig erőteljesebb fedés érhető el. Klasszikus üvegcséje és széles ecsete megkönnyíti a felvitelt. Jó választás lehet hétköznapokra, elegáns alkalmakra vagy francia manikűr alapjaként.",
+        "használat": "Tiszta, száraz körmökre vigyél fel egy vékony réteget, majd száradás után szükség esetén ismételd meg. A tartósabb eredményhez használhatsz fedőlakkot."
     },
     {
         "id": 14,
@@ -164,11 +164,11 @@ const termekek = [
         "marka": "Essence",
         "ar": 1490,
         "kategoria": "Köröm",
-        "kep": "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=700",
+        "kep": "https://danaperfumerias.com/64559-large_default/essence-gel-nail-polish-esmalte-de-unas.jpg",
         "akcio": false,
-        "leiras": "Fényes hatású körömlakk többféle színben.",
-        "leirasBovebb": "Könnyen felvihető körömlakk, amellyel egyszerűen készíthetsz színes, ápolt hatású manikűrt.",
-        "használat": "Vékony rétegben vidd fel, majd hagyd teljesen megszáradni."
+        "leiras": "Fényes hatású Essence körömlakk pasztell rózsaszín árnyalatban.",
+        "leirasBovebb": "Az Essence The Gel Nail Polish körömlakk a zselés hatású, fényes manikűr megjelenését idézi. A bemutatott pasztell rózsaszín árnyalat finom és könnyen kombinálható, ezért hétköznapi viselethez is illik. A praktikus ecsettel egyszerűen felvihető, a vékony rétegek pedig segítenek az egyenletesebb eredményben. A pontos színárnyalat a képernyő beállításaitól és a fényviszonyoktól eltérhet.",
+        "használat": "Vigyél fel egy vékony réteget a tiszta körmökre, majd hagyd megszáradni. Erőteljesebb színhez használj még egy réteget."
     },
     {
         "id": 15,
@@ -176,11 +176,11 @@ const termekek = [
         "marka": "Sally Hansen",
         "ar": 2990,
         "kategoria": "Köröm",
-        "kep": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=700",
+        "kep": "https://media.ulta.com/i/ulta/2523167?fmt=auto&h=1080&w=1080",
         "akcio": false,
-        "leiras": "Ápoló alap a természetes körmökhöz.",
-        "leirasBovebb": "Körömápoló készítmény, amely segít erősítő réteget képezni a köröm felszínén.",
-        "használat": "A termék használati útmutatója szerint vidd fel tiszta, száraz körömre."
+        "leiras": "Körömerősítő ápoló lakk a természetes körmök mindennapi védelméhez.",
+        "leirasBovebb": "A Sally Hansen Advanced Hard as Nails körömerősítő ápoló réteget képez a köröm felszínén. Használható önmagában, vagy a körömápolási rutin részeként, amikor szeretnéd rendezettebbé és ápoltabbá tenni a körmeid megjelenését. A halvány rózsaszín árnyalatú formula és az ecsetes kiszerelés egyszerű felvitelt tesz lehetővé. Mindig kövesd a termék címkéjén szereplő használati gyakoriságot.",
+        "használat": "A csomagoláson található útmutató szerint vidd fel tiszta, száraz körömre. A javasolt időközönként frissítsd a réteget."
     },
     {
         "id": 16,
@@ -188,11 +188,11 @@ const termekek = [
         "marka": "Ariana Grande",
         "ar": 16990,
         "kategoria": "Parfüm",
-        "kep": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700",
+        "kep": "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1736273799-1705960105-1687362669-ariana-grande-cloud-eau-de-parfum-64931c3273b83.jpg?crop=1xw%3A1xh%3Bcenter%2Ctop&resize=980%3A%2A",
         "akcio": true,
-        "leiras": "Édes, krémes és légies illatvilág.",
-        "leirasBovebb": "Jellegzetes, édeskés illatkompozíció, amely különleges üvegével a parfümgyűjtemény dísze is lehet.",
-        "használat": "Kis mennyiséget permetezz a bőrre, a szem és az arc környékét kerülve."
+        "leiras": "Édeskés, légies illatkompozíció különleges, felhő formájú üvegben.",
+        "leirasBovebb": "Az Ariana Grande Cloud Eau de Parfum nemcsak az illatáról, hanem jellegzetes, felhő formájú üvegéről is ismert. Illatvilágában édes, krémes és lágy jegyek találkoznak, így különleges, könnyen felismerhető karaktert képvisel. Az elegáns, játékos csomagolás miatt ajándéknak vagy parfümgyűjteménybe is mutatós darab. Az illat intenzitása és tartóssága a bőrtípustól és a használat módjától is függ.",
+        "használat": "Kis mennyiséget permetezz a csuklóra vagy a nyak oldalára. Ne fújd közvetlenül az arcra vagy a szem környékére."
     },
     {
         "id": 17,
@@ -200,11 +200,11 @@ const termekek = [
         "marka": "ZARA",
         "ar": 8990,
         "kategoria": "Parfüm",
-        "kep": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=700",
+        "kep": "https://www.raspiv.md/upfiles/goods-items/0110242999_6_1_1_result.jpg",
         "akcio": false,
-        "leiras": "Karakteres, meleg illat elegáns megjelenéssel.",
-        "leirasBovebb": "Intenzív, különleges illatvilágú parfüm, amelyet esti alkalmakra és hétköznapi viselethez is választhatsz.",
-        "használat": "Permetezd a pulzuspontokra, például a csuklóra vagy a nyak oldalára."
+        "leiras": "Karakteres, meleg illatú Zara parfüm elegáns, letisztult üvegben.",
+        "leirasBovebb": "A ZARA Red Temptation Eau de Parfum modern, karakteres illatvilágú parfüm, amelyet sokan a meleg, édeskés illatjegyei miatt kedvelnek. Letisztult, átlátszó üvege aranyszínű kupakkal elegáns megjelenést kapott. Nappali és esti alkalmakhoz is választható, attól függően, mennyire intenzív illatot szeretnél viselni. A parfümöt érdemes először kis mennyiségben kipróbálni.",
+        "használat": "Permetezz egy keveset a pulzuspontokra, például a csuklóra. Kerüld a szemmel és az irritált bőrrel való érintkezést."
     },
     {
         "id": 18,
@@ -212,11 +212,11 @@ const termekek = [
         "marka": "Sol de Janeiro",
         "ar": 9990,
         "kategoria": "Parfüm",
-        "kep": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=700",
+        "kep": "https://www.sephora.com/productimages/sku/s1930759-main-zoom.jpg?imwidth=2000",
         "akcio": true,
-        "leiras": "Édes, pisztáciás-karamellás illatjegyek.",
-        "leirasBovebb": "A Cheirosa 62 jellegzetes, gourmand illatvilágú testpermet, amely frissítő illatrétegként használható.",
-        "használat": "Permetezd a testre a kívánt mennyiségben, a szem és az arc környékét kerülve."
+        "leiras": "A Cheirosa 62 édes, gourmand illatú testpermet a Sol de Janeirótól.",
+        "leirasBovebb": "A Sol de Janeiro Cheirosa 62 testpermetet jellegzetes, édes és napfényes illatvilága teszi különlegessé. A pisztáciás és karamellás hangulatú jegyek meleg, desszertszerű karaktert adnak neki. Könnyed testpermetként használható, ha finom illatfelhőt szeretnél magad körül. A narancssárga flakon a márka egyik könnyen felismerhető terméke.",
+        "használat": "Permetezd a testre megfelelő távolságból, a szem és az arc környékét elkerülve. Ha érzékeny a bőröd, először kis bőrfelületen próbáld ki."
     }
 ];
 
