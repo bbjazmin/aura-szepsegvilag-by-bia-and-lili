@@ -223,6 +223,7 @@ const termekek = [
 // Globális állapot
 let kosar = [];
 let kivalasztottKategoria = "Mind";
+let kivalasztottMarka = "Mind";
 
 // SPA Navigáció
 function navigalj(viewName) {
@@ -234,13 +235,15 @@ function navigalj(viewName) {
 // Katalógus frissítése, szűrése és rendezése
 function katalogusFrissitese() {
     const grid = document.getElementById("termek-grid");
+    markakGombokFrissitese();
     const kereses = document.getElementById("kereso-input").value.toLowerCase();
     const rendezes = document.getElementById("rendezes-select").value;
 
     let szurt = termekek.filter(t => {
         const katMatch = kivalasztottKategoria === "Mind" || t.kategoria === kivalasztottKategoria;
+        const markaMatch = kivalasztottMarka === "Mind" || t.marka === kivalasztottMarka;
         const searchMatch = t.nev.toLowerCase().includes(kereses) || t.marka.toLowerCase().includes(kereses);
-        return katMatch && searchMatch;
+        return katMatch && markaMatch && searchMatch;
     });
 
     if (rendezes === "olcso") szurt.sort((a, b) => a.ar - b.ar);
@@ -258,7 +261,7 @@ function katalogusFrissitese() {
         <div class="termek-card">
             <img src="${t.kep}" alt="${t.nev}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';" onclick="termekReszletek(${t.id})">
             <div class="card-padding">
-                <span class="termek-marka">${t.marka}</span>
+                <button class="termek-marka marka-link" data-marka="${t.marka}" onclick="markaSzures(this.dataset.marka)">${t.marka}</button>
                 <h3 class="termek-nev" onclick="termekReszletek(${t.id})">${t.nev}</h3>
                 <p class="termek-leiras">${t.leiras}</p>
                 <div class="card-footer">
@@ -270,9 +273,39 @@ function katalogusFrissitese() {
     `).join('');
 }
 
+// Márka szerinti szűrés
+function markakGombokFrissitese() {
+    const tarolo = document.getElementById('marka-gombok');
+    if (!tarolo) return;
+    const markak = [...new Set(termekek.map(t => t.marka))].sort((a, b) => a.localeCompare(b, 'hu'));
+    tarolo.innerHTML = '';
+    const minden = document.createElement('button');
+    minden.className = 'marka-btn' + (kivalasztottMarka === 'Mind' ? ' aktiv' : '');
+    minden.textContent = 'Minden márka';
+    minden.onclick = () => markaSzures('Mind');
+    tarolo.appendChild(minden);
+    markak.forEach(marka => {
+        const gomb = document.createElement('button');
+        gomb.className = 'marka-btn' + (kivalasztottMarka === marka ? ' aktiv' : '');
+        gomb.textContent = marka;
+        gomb.onclick = () => markaSzures(marka);
+        tarolo.appendChild(gomb);
+    });
+}
+
+function markaSzures(marka) {
+    kivalasztottMarka = marka;
+    kivalasztottKategoria = 'Mind';
+    document.querySelectorAll('.kat-btn').forEach(btn => btn.classList.remove('aktiv'));
+    const elsoGomb = document.querySelector('.kat-btn');
+    if (elsoGomb) elsoGomb.classList.add('aktiv');
+    navigalj('katalogus');
+    katalogusFrissitese();
+}
 // Kategória szűrés
 function kategoriaSzures(kat) {
     kivalasztottKategoria = kat;
+    kivalasztottMarka = "Mind";
     document.querySelectorAll('.kat-btn').forEach(btn => {
         if (btn.innerText.includes(kat) || (kat === 'Mind' && btn.innerText.includes('Összes'))) {
             btn.classList.add('aktiv');
