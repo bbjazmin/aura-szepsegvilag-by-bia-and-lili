@@ -1,4 +1,4 @@
-/* Termékek adatai: minden termék egy objektum */
+// Termékek adatai: objektumokat tartalmazó tömb (JSON szerkezetű adatok)
 var termekek = [
     { id: 1, nev: "Hidratáló arckrém", marka: "CeraVe", ar: 4990, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500", akcio: true },
     { id: 2, nev: "Arctisztító gél", marka: "CeraVe", ar: 3590, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500", akcio: false },
@@ -14,24 +14,24 @@ var termekek = [
     { id: 12, nev: "Mályva körömlakk", marka: "Essie", ar: 2490, kategoria: "Köröm", kep: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=500", akcio: false }
 ];
 
-// A kosár és a kiválasztott kategória változói.
+// Globális változók a kosár tárolására és az aktuális kategóriához.
 var kosar = [];
 var kivalasztottKategoria = "Mind";
 
-// Termékek keresése, szűrése és megjelenítése.
+// Termékek keresése, szűrése, rendezése és megjelenítése a DOM-ban.
 function termekekMegjelenitese() {
     var lista = document.getElementById("termek-lista");
     var keresettSzoveg = document.getElementById("kereso").value.toLowerCase();
     lista.innerHTML = "";
 
-    // A filter csak azokat a termékeket tartja meg, amelyek megfelelnek.
+    // A filter metódus segítségével kiszűrjük a megfelelő termékeket (kategória + keresési szöveg).
     var szurtTermekek = termekek.filter(function(termek) {
         var megfelelKategoria = kivalasztottKategoria == "Mind" || termek.kategoria == kivalasztottKategoria;
         var megfelelKereses = termek.nev.toLowerCase().includes(keresettSzoveg) || termek.marka.toLowerCase().includes(keresettSzoveg);
         return megfelelKategoria && megfelelKereses;
     });
 
-    // Rendezés ár vagy név szerint.
+    // Kiválasztott rendezési elv alkalmazása (ár szerint növekvő/csökkenő vagy név szerinti rendezés).
     var rendezes = document.getElementById("rendezes").value;
     if (rendezes == "olcso") {
         szurtTermekek.sort(function(a, b) { return a.ar - b.ar; });
@@ -45,13 +45,13 @@ function termekekMegjelenitese() {
 
     document.getElementById("talalatok").innerText = "Találatok száma: " + szurtTermekek.length;
 
-    // Ha nincs találat, üzenetet írunk ki.
+    // Ha nincs találat, erről tájékoztatjuk a felhasználót.
     if (szurtTermekek.length == 0) {
         lista.innerHTML = '<div class="nincs-talalat">Nincs találat. Próbálj másik keresőszót!</div>';
         return;
     }
 
-    // A for ciklus minden termékhez létrehoz egy kártyát.
+    // Ciklussal végigmegyünk a szűrt tömbön, és felépítjük a HTML kártyákat.
     for (var i = 0; i < szurtTermekek.length; i++) {
         var termek = szurtTermekek[i];
         var akcioSzoveg = "";
@@ -76,20 +76,22 @@ function termekekMegjelenitese() {
     }
 }
 
-// Kategóriaváltás és a gomb aktív jelölése.
+// Kategória váltása és az aktív gomb stílusának frissítése.
 function kategoriaValasztas(kategoria, gomb) {
     kivalasztottKategoria = kategoria;
     var gombok = document.getElementsByClassName("kategoria-gomb");
 
+    // Minden gombról leveszük az 'aktiv' osztályt
     for (var i = 0; i < gombok.length; i++) {
         gombok[i].classList.remove("aktiv");
     }
 
+    // A rákattintott gombra rátesszük az 'aktiv' osztályt
     gomb.classList.add("aktiv");
     termekekMegjelenitese();
 }
 
-// Egy termék hozzáadása a kosárhoz.
+// Termék hozzáadása a kosárhoz az azonosító (ID) alapján.
 function kosarbaTesz(termekId) {
     var kivalasztottTermek = null;
 
@@ -104,6 +106,7 @@ function kosarbaTesz(termekId) {
         return;
     }
 
+    // Megnézzük, hogy a termék benne van-e már a kosárban
     var marBenneVan = false;
     for (var i = 0; i < kosar.length; i++) {
         if (kosar[i].id == termekId) {
@@ -112,6 +115,7 @@ function kosarbaTesz(termekId) {
         }
     }
 
+    // Ha még nincs benne, új elemként adjuk hozzá
     if (marBenneVan == false) {
         kosar.push({ id: kivalasztottTermek.id, nev: kivalasztottTermek.nev, ar: kivalasztottTermek.ar, darab: 1 });
     }
@@ -120,7 +124,7 @@ function kosarbaTesz(termekId) {
     uzenetKiirasa(kivalasztottTermek.nev + " a kosárba került!");
 }
 
-// A kosárban szereplő darabok számolása.
+// A kosárban lévő elemek darabszámának összesítése és frissítése a fejlécben.
 function kosarDarabFrissitese() {
     var osszesDarab = 0;
     for (var i = 0; i < kosar.length; i++) {
@@ -130,7 +134,7 @@ function kosarDarabFrissitese() {
     kosarMegjelenitese();
 }
 
-// A kosár tartalmának és végösszegének kiírása.
+// A kosár tartalmának renderelése és a végösszeg kiszámítása.
 function kosarMegjelenitese() {
     var tartalom = document.getElementById("kosar-tartalom");
     var vegosszeg = 0;
@@ -153,7 +157,7 @@ function kosarMegjelenitese() {
     document.getElementById("vegosszeg").innerText = "Végösszeg: " + vegosszeg.toLocaleString("hu-HU") + " Ft";
 }
 
-// Termék eltávolítása a kosárból.
+// Egy adott termék törlése a kosárból ID alapján.
 function termekTorlese(termekId) {
     var ujKosar = [];
     for (var i = 0; i < kosar.length; i++) {
@@ -166,7 +170,7 @@ function termekTorlese(termekId) {
     uzenetKiirasa("A terméket eltávolítottuk a kosárból.");
 }
 
-// A kosár teljes ürítése megerősítés után.
+// A kosár teljes kiürítése megerősítő ablakkal (confirm).
 function kosarUritese() {
     var valasz = confirm("Biztosan kiüríted a kosarat?");
     if (valasz == true) {
@@ -176,7 +180,7 @@ function kosarUritese() {
     }
 }
 
-// A kosár megjelenítése és odagörgetés.
+// Megnyitja/láthatóvá teszi a kosár szekciót és simán oda is görget (smooth scroll).
 function kosarMegnyitasa() {
     var kosarResz = document.getElementById("kosar-resz");
     kosarResz.style.display = "block";
@@ -184,17 +188,17 @@ function kosarMegnyitasa() {
     kosarResz.scrollIntoView({ behavior: "smooth" });
 }
 
-// Egyszerű kedvenc-visszajelzés.
+// Kedvencek funkció (ideiglenes értesítés).
 function kedvencJelzes() {
     alert("A kedvencek funkció jelenleg bemutató változat.");
 }
 
-// Üzenet kiírása a weboldalra.
+// Általános visszajelző üzenet megjelenítése az oldalon.
 function uzenetKiirasa(szoveg) {
     var uzenet = document.getElementById("uzenet");
     uzenet.innerText = szoveg;
     uzenet.style.display = "block";
 }
 
-// Az oldal betöltésekor megjelenítjük a termékeket.
+// Az oldal betöltésekor azonnal megjelenítjük a termékeket.
 termekekMegjelenitese();
