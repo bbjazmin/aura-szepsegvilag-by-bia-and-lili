@@ -1,4 +1,4 @@
-/* Az összes elem méretezése kiszámíthatóbb legyen */
+/* Univerzális szelektros: az összes elem méretezése kiszámíthatóbb legyen (tartalmazza a margót és a paddinget a szélességben) */
 * {
     box-sizing: border-box;
 }
@@ -10,6 +10,7 @@ body {
     color: #352334;
 }
 
+/* Fejléc rugalmas (Flexbox) elrendezése */
 header {
     padding: 18px 5%;
     background: white;
@@ -48,6 +49,7 @@ button {
     padding: 10px 14px;
 }
 
+/* Kiemelt reklám szekció gradiens háttérrel */
 .reklam {
     width: 90%;
     margin: 25px auto;
@@ -94,12 +96,14 @@ input, select {
     background: #a12d77;
 }
 
+/* Terméklista reszponzív rácsos (Grid) elrendezése */
 .termekek {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 22px;
 }
 
+/* Egyedi termékkártya stílus hover animációval */
 .termek-kartya {
     overflow: hidden;
     border: 1px solid #efdfeb;
@@ -219,6 +223,7 @@ footer {
     background: #43223c;
 }
 
+/* Reszponzív Media Query kisebb képernyőkre (pl. telefonok) */
 @media (max-width: 600px) {
     .reklam h2 {
         font-size: 25px;
