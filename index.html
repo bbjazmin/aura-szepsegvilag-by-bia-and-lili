@@ -1,84 +1,384 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <!-- Alapvető meta tagek a karakterkódoláshoz és reszponzív nézethez -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Szépségvilág</title>
-    <!-- Külső CSS stíluslap csatolása -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Külső JavaScript fájl betöltése (defer: a DOM felépülése után fut le) -->
-    <script src="script.js" defer></script>
+    <title>Aura Szépségvilág - Premium Beauty Webshop</title>
+    <!-- Virágos Favicon (SVG Adat URl-ként beágyazva) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+    <!-- Tailwind CSS keretrendszer a letisztult designhoz -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aura: {
+                            50: '#fff5f8',
+                            100: '#ffe4ee',
+                            200: '#fecddf',
+                            300: '#fea3c5',
+                            500: '#f43f77',
+                            600: '#e11d58',
+                            700: '#be1243',
+                            800: '#9f123c',
+                            900: '#730b2c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .page-view { display: none; }
+        .page-view.active { display: block; }
+    </style>
 </head>
-<body>
-    <!-- Fejléc (Header): logó, navigáció és kosár gomb -->
-    <header>
-        <h1>Aura Szépségvilág</h1>
-        <nav>
-            <a href="#fooldal">Főoldal</a>
-            <a href="#webshop">Webshop</a>
-            <a href="#kapcsolat">Kapcsolat</a>
-        </nav>
-        <!-- Kosár gomb, ami megnyitja a kosár nézetet és dinamikusan mutatja a darabszámot -->
-        <button onclick="kosarMegnyitasa()">Kosár (<span id="kosar-darab">0</span>)</button>
+<body class="bg-[#fff5f8] text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- FEJLÉC ÉS NAVIGÁCIÓ -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-aura-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigalj('katalogus')">
+                    <span class="text-3xl">🌸</span>
+                    <div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-aura-600 to-aura-800 bg-clip-text text-transparent">Aura</h1>
+                        <p class="text-xs tracking-widest text-aura-500 uppercase font-medium">Szépségvilág</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                    <button onclick="navigalj('katalogus')" class="hover:text-aura-600 transition">Katalógus</button>
+                    <button onclick="kategoriaSzures('Arcápolás')" class="hover:text-aura-600 transition">Arcápolás</button>
+                    <button onclick="kategoriaSzures('Smink')" class="hover:text-aura-600 transition">Smink</button>
+                    <button onclick="kategoriaSzures('Parfüm')" class="hover:text-aura-600 transition">Parfümök</button>
+                </nav>
+
+                <div class="flex items-center gap-4">
+                    <button onclick="navigalj('kosar')" class="relative flex items-center gap-2 bg-aura-50 text-aura-700 px-4 py-2.5 rounded-full font-semibold border border-aura-200 hover:bg-aura-100 transition">
+                        <span>🛒 Kosár</span>
+                        <span id="kosar-szamlalo" class="bg-aura-600 text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Főoldali kiemelt reklám/banner szekció -->
-    <section class="reklam" id="fooldal">
-        <h2>Fedezd fel a szépséged!</h2>
-        <p>Arcápolás, smink és hajápolás egy helyen.</p>
-    </section>
-
-    <!-- Fő tartalom (Main): webshop funkciók -->
-    <main id="webshop">
-        <h2>Szépségápolási termékek</h2>
+    <!-- FŐ TARTALOM NÉZETEK -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
         
-        <!-- Keresés és rendezés vezérlői -->
-        <div class="kereses-sor">
-            <!-- oninput eseménykezelő: gépelésre azonnal szűri a termékeket -->
-            <input id="kereso" type="text" placeholder="Keress terméket vagy márkát..." oninput="termekekMegjelenitese()">
-            <!-- onchange eseménykezelő: rendezési feltétel változásakor lefut -->
-            <select id="rendezes" onchange="termekekMegjelenitese()">
-                <option value="alap">Alapértelmezett sorrend</option>
-                <option value="olcso">Ár szerint növekvő</option>
-                <option value="draga">Ár szerint csökkenő</option>
-                <option value="nev">Név szerint</option>
-            </select>
-        </div>
+        <!-- 1. TERMÉKKATALÓGUS NÉZET -->
+        <section id="view-katalogus" class="page-view active">
+            <div class="bg-gradient-to-r from-aura-600 to-aura-800 rounded-3xl p-8 sm:p-12 text-white mb-10 shadow-lg relative overflow-hidden">
+                <div class="relative z-10 max-w-xl">
+                    <span class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">Tavaszi Kollekció</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold mt-3 leading-tight">Ragyogj a természetes szépségeddel!</h2>
+                    <p class="mt-4 text-aura-100 text-sm sm:text-base">Több mint 50 válogatott prémium szépségápolási termék egy helyen.</p>
+                </div>
+                <span class="absolute -right-6 -bottom-10 text-9xl opacity-20 pointer-events-none">🌸</span>
+            </div>
 
-        <!-- Kategória szűrő gombok -->
-        <div class="kategoriak">
-            <button class="kategoria-gomb aktiv" onclick="kategoriaValasztas('Mind', this)">Összes</button>
-            <button class="kategoria-gomb" onclick="kategoriaValasztas('Arcápolás', this)">Arcápolás</button>
-            <button class="kategoria-gomb" onclick="kategoriaValasztas('Smink', this)">Smink</button>
-            <button class="kategoria-gomb" onclick="kategoriaValasztas('Hajápolás', this)">Hajápolás</button>
-            <button class="kategoria-gomb" onclick="kategoriaValasztas('Testápolás', this)">Testápolás</button>
-            <button class="kategoria-gomb" onclick="kategoriaValasztas('Köröm', this)">Köröm</button>
-        </div>
+            <!-- Szűrők és kereső -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-aura-100 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="w-full md:w-96 relative">
+                    <input type="text" id="kereso-input" placeholder="Keress 54 termék közül..." oninput="katalogusFrissitese()" 
+                        class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-aura-500 focus:bg-white transition text-sm">
+                    <span class="absolute left-3.5 top-3.5 text-slate-400">🔍</span>
+                </div>
 
-        <!-- Dinamikus találati szám kiírása -->
-        <p id="talalatok"></p>
+                <div class="flex flex-wrap gap-2 w-full md:w-auto items-center">
+                    <select id="rendezes-select" onchange="katalogusFrissitese()" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-aura-500">
+                        <option value="alap">Alapértelmezett sorrend</option>
+                        <option value="olcso">Ár szerint növekvő</option>
+                        <option value="draga">Ár szerint csökkenő</option>
+                        <option value="nev">Név szerint (A-Z)</option>
+                    </select>
+                </div>
+            </div>
 
-        <!-- Ide generálja a JS a termékkártyákat -->
-        <div class="termekek" id="termek-lista"></div>
+            <!-- Kategória gombok -->
+            <div class="flex flex-wrap gap-2 mb-8" id="kategoria-gombok">
+                <button onclick="kategoriaSzures('Mind')" class="kat-btn bg-aura-600 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition">Összes (54)</button>
+                <button onclick="kategoriaSzures('Arcápolás')" class="kat-btn bg-white text-slate-600 border border-slate-200 hover:border-aura-300 px-5 py-2.5 rounded-xl font-medium text-sm transition">Arcápolás</button>
+                <button onclick="kategoriaSzures('Smink')" class="kat-btn bg-white text-slate-600 border border-slate-200 hover:border-aura-300 px-5 py-2.5 rounded-xl font-medium text-sm transition">Smink</button>
+                <button onclick="kategoriaSzures('Hajápolás')" class="kat-btn bg-white text-slate-600 border border-slate-200 hover:border-aura-300 px-5 py-2.5 rounded-xl font-medium text-sm transition">Hajápolás</button>
+                <button onclick="kategoriaSzures('Testápolás')" class="kat-btn bg-white text-slate-600 border border-slate-200 hover:border-aura-300 px-5 py-2.5 rounded-xl font-medium text-sm transition">Testápolás</button>
+                <button onclick="kategoriaSzures('Köröm')" class="kat-btn bg-white text-slate-600 border border-slate-200 hover:border-aura-300 px-5 py-2.5 rounded-xl font-medium text-sm transition">Köröm</button>
+                <button onclick="kategoriaSzures('Parfüm')" class="kat-btn bg-white text-slate-600 border border-slate-200 hover:border-aura-300 px-5 py-2.5 rounded-xl font-medium text-sm transition">Parfüm</button>
+            </div>
 
-        <!-- Kosár részlet (alapból rejtett, JS nyitja meg) -->
-        <section id="kosar-resz">
-            <h2>A kosarad</h2>
-            <div id="kosar-tartalom"></div>
-            <h3 id="vegosszeg">Végösszeg: 0 Ft</h3>
-            <button onclick="kosarUritese()">Kosár ürítése</button>
+            <p id="talalatok-szama" class="text-slate-500 text-sm mb-4 font-medium"></p>
+            <div id="termek-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"></div>
         </section>
 
-        <!-- Visszajelző üzenetek helye -->
-        <p id="uzenet"></p>
+        <!-- 2. TERMÉK RÉSZLETEI NÉZET -->
+        <section id="view-reszletek" class="page-view">
+            <button onclick="navigalj('katalogus')" class="flex items-center gap-2 text-aura-600 font-semibold mb-6 hover:underline">
+                ← Vissza a termékekhez
+            </button>
+            <div id="termek-reszlet-tartalom" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-aura-100"></div>
+        </section>
+
+        <!-- 3. KOSÁR NÉZET -->
+        <section id="view-kosar" class="page-view">
+            <h2 class="text-3xl font-extrabold text-slate-800 mb-6">A Kosarad Tartalma</h2>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white rounded-3xl p-6 shadow-sm border border-aura-100" id="kosar-lista"></div>
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-aura-100 h-fit">
+                    <h3 class="text-xl font-bold mb-4">Összegzés</h3>
+                    <div class="flex justify-between py-3 border-b text-slate-600">
+                        <span>Részösszeg:</span>
+                        <span id="kosar-reszosszeg" class="font-semibold">0 Ft</span>
+                    </div>
+                    <div class="flex justify-between py-3 border-b text-slate-600">
+                        <span>Szállítás:</span>
+                        <span class="text-emerald-600 font-semibold">INGYENES</span>
+                    </div>
+                    <div class="flex justify-between py-4 text-xl font-extrabold text-slate-800">
+                        <span>Végösszeg:</span>
+                        <span id="kosar-vegosszeg" class="text-aura-600">0 Ft</span>
+                    </div>
+                    <button onclick="alert('Köszönjük a rendelést! Ez egy bemutató webshop.')" class="w-full bg-aura-600 hover:bg-aura-700 text-white font-bold py-4 rounded-xl shadow-lg transition mt-4">
+                        Megrendelés Leadása
+                    </button>
+                    <button onclick="kosarUritese()" class="w-full text-slate-400 hover:text-red-500 text-sm mt-3 transition">
+                        Kosár ürítése
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Lábléc (Footer): kapcsolat és copyright -->
-    <footer id="kapcsolat">
-        <h2>Aura Szépségvilág</h2>
-        <p>Kapcsolat: aura.szepsegvilag@gmail.com</p>
-        <p>© 2026 Aura Szépségvilág</p>
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-white mb-2">🌸 Aura Szépségvilág</h2>
+            <p class="text-sm mb-4">Prémium Kozmetikumok és Szépségápolás</p>
+            <p class="text-xs text-slate-500">© 2026 Aura Szépségvilág - Szoftverfejlesztő Technikus Érettségi Projekt</p>
+        </div>
     </footer>
+
+    <!-- JAVASCRIPT LOGIKA -->
+    <script>
+        // Biztonságos tartalékkép (fallback image)
+        const FALLBACK_IMG = "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500";
+
+        // 54 db egyedi termék adatbázisa
+        const termekek = [
+            { id: 1, nev: "Hidratáló Arckrém", marka: "CeraVe", ar: 4990, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500", akcio: true, leiras: "Mélyhidratáló formula hialuronsavval.", leirasBovebb: "Gazdag, nem zsíros állagú krém, amely egész napon át tartó hidratálást biztosít az arcbőr számára. Három alapvető ceramidot tartalmaz.", használat: "Vidd fel reggel és este a megtisztított arcbőrre." },
+            { id: 2, nev: "Gyengéd Arctisztító Gél", marka: "CeraVe", ar: 3590, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500", akcio: false, leiras: "Kíméletes arctisztító normál és száraz bőrre.", leirasBovebb: "Eltávolítja a szennyeződéseket anélkül, hogy kiszárítaná a bőrt. Kíméli a bőr természetes védőrétegét.", használat: "Masszírozd be a nedves bőrbe, majd öblítsd le langyos vízzel." },
+            { id: 3, nev: "Hialuronsav Szérum 2% + B5", marka: "The Ordinary", ar: 4290, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500", akcio: true, leiras: "Intenzív hidratálás több molekulamérettel.", leirasBovebb: "Könnyű szérum, amely mélyen feltölti a bőrt nedvességgel, csökkentve a finom ráncokat.", használat: "Vigyél fel néhány cseppet reggel és este a krém használata előtt." },
+            { id: 4, nev: "Folyékony Alapozó SPF 20", marka: "Maybelline", ar: 5290, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1631214540242-5a2b3d2c2e1b?w=500", akcio: false, leiras: "Hosszan tartó, természetes fedés.", leirasBovebb: "Pehelykönnyű formula, amely egyenletes bőrfelszínt biztosít egész napon át.", használat: "Oszlasd el egyenletesen szivaccsal vagy ecsettel az arcon." },
+            { id: 5, nev: "Dúsító Szempillaspirál", marka: "L'Oréal Paris", ar: 3890, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500", akcio: false, leiras: "Látványos dúsítás és hosszabbítás.", leirasBovebb: "Különleges keféje minden egyes pillát elér és szétválaszt, csomómentes végeredményt biztosítva.", használat: "Vidd fel a pillák tövétől a végekig cikk-cakk mozdulatokkal." },
+            { id: 6, nev: "Matt Rózsaszín Rúzs", marka: "Maybelline", ar: 2990, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500", akcio: true, leiras: "Intenzív szín és tartós matt hatás.", leirasBovebb: "Bársonyos textúrájú ajakrúzs, amely nem szárítja az ajkakat és akár 16 órán át tart.", használat: "Vidd fel közvetlenül az ajkaidra az középről kifelé haladva." },
+            { id: 7, nev: "Tápláló Sampon", marka: "L'Oréal Paris", ar: 2790, kategoria: "Hajápolás", kep: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500", akcio: false, leiras: "Selymes fény és erősítés a hajnak.", leirasBovebb: "Értékes olajokkal gazdagított sampon, amely helyreállítja a száraz, töredezett hajszálakat.", használat: "Habosítsd fel a nedves hajon, majd alaposan öblítsd le." },
+            { id: 8, nev: "Intenzív Hajpakolás", marka: "Garnier", ar: 3190, kategoria: "Hajápolás", kep: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500", akcio: true, leiras: "Méyápolás 3 perc alatt.", leirasBovebb: "Gyümölcskivonatokkal és tápláló összetevőkkel újjáéleszti a megfakult hajat.", használat: "Hagyd a nedves hajon 3-5 percig, majd öblítsd le." },
+            { id: 9, nev: "Rich Care Testápoló", marka: "Nivea", ar: 1890, kategoria: "Testápolás", kep: "https://images.unsplash.com/photo-1601612628452-9e99ced43524?w=500", akcio: false, leiras: "48 órás hosszan tartó hidratálás.", leirasBovebb: "Kényeztető testápoló mandulaolajjal a puhább és selymesebb bőrért.", használat: "Gyengéden masszírozd be a teljes testfelületen." },
+            { id: 10, nev: "Koncentrált Kézkrém", marka: "Neutrogena", ar: 1590, kategoria: "Testápolás", kep: "https://images.unsplash.com/photo-1617897903246-719242758050?w=500", akcio: false, leiras: "Azonnali enyhülés a nagyon száraz kezeknek.", leirasBovebb: "Norvég formula alapján készült krém, amely azonnal nyugtatja az igénybevett kezeket.", használat: "Kis mennyiséget dörzsölj el a kezeiden." },
+            { id: 11, nev: "Körömápoló Olaj", marka: "Essence", ar: 1290, kategoria: "Köröm", kep: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=500", akcio: true, leiras: "C-vitaminnal a természetes körmökért.", leirasBovebb: "Táplálja a körömágyat és erősíti a töredezett körmöket.", használat: "Cseppents a körömágyra és gyengéden masszírozd be." },
+            { id: 12, nev: "Mályva Körömlakk", marka: "Essie", ar: 2490, kategoria: "Köröm", kep: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=500", akcio: false, leiras: "Szalon minőségű fedés és ragyogás.", leirasBovebb: "Hosszan tartó körömlakk professzionális ecsettel a precíz felvitelért.", használat: "Vigyél fel két vékony réteget a megtisztított körmökre." }
+        ];
+
+        // További termékek generálása az 54 db eléréséhez
+        const kategóriák = ["Arcápolás", "Smink", "Hajápolás", "Testápolás", "Köröm", "Parfüm"];
+        const márkák = ["CeraVe", "The Ordinary", "L'Oréal Paris", "Maybelline", "Nivea", "Neutrogena", "Essence", "Essie", "Chanel", "Dior"];
+        const kepekByKat = {
+            "Arcápolás": "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500",
+            "Smink": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500",
+            "Hajápolás": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500",
+            "Testápolás": "https://images.unsplash.com/photo-1601612628452-9e99ced43524?w=500",
+            "Köröm": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=500",
+            "Parfüm": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500"
+        };
+
+        for (let i = 13; i <= 54; i++) {
+            const kat = kategóriák[i % kategóriák.length];
+            termekek.push({
+                id: i,
+                nev: `${kat} Termék ${i}`,
+                marka: márkák[i % márkák.length],
+                ar: Math.floor(Math.random() * 80 + 15) * 100 + 90,
+                kategoria: kat,
+                kep: kepekByKat[kat],
+                akcio: i % 3 === 0,
+                leiras: `Prémium minőségű ${kat.toLowerCase()} készítmény a mindennapi szépségápoláshoz.`,
+                leirasBovebb: `Ez a különleges ${kat.toLowerCase()} termék gondosan válogatott összetevőivel biztosítja a ragyogó és ápolt megjelenést. Idealis választás mindennapi használatra.`,
+                használat: "Vidd fel a kívánt bőrfelületre vagy hajra, és gyengéden masszírozd be."
+            });
+        }
+
+        // Globális állapot
+        let kosar = [];
+        let kivalasztottKategoria = "Mind";
+
+        // Oldal navigáció (SPA működés)
+        function navigalj(viewName) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+            document.getElementById(`view-${viewName}`).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Katalógus megjelenítése
+        function katalogusFrissitese() {
+            const grid = document.getElementById("termek-grid");
+            const kereses = document.getElementById("kereso-input").value.toLowerCase();
+            const rendezes = document.getElementById("rendezes-select").value;
+
+            let szurt = termekek.filter(t => {
+                const katMatch = kivalasztottKategoria === "Mind" || t.kategoria === kivalasztottKategoria;
+                const searchMatch = t.nev.toLowerCase().includes(kereses) || t.marka.toLowerCase().includes(kereses);
+                return katMatch && searchMatch;
+            });
+
+            if (rendezes === "olcso") szurt.sort((a, b) => a.ar - b.ar);
+            if (rendezes === "draga") szurt.sort((a, b) => b.ar - a.ar);
+            if (rendezes === "nev") szurt.sort((a, b) => a.nev.localeCompare(b.nev));
+
+            document.getElementById("talalatok-szama").innerText = `Megjelenítve: ${szurt.length} / ${termekek.length} termék`;
+
+            if (szurt.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">Nincs a keresésnek megfelelő termék.</div>`;
+                return;
+            }
+
+            grid.innerHTML = szurt.map(t => `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-aura-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="relative cursor-pointer" onclick="termekReszletek(${t.id})">
+                        ${t.akcio ? '<span class="absolute top-3 left-3 bg-aura-600 text-white text-[10px] font-bold px-2 py-1 rounded-md z-10">AKCIÓ</span>' : ''}
+                        <img src="${t.kep}" alt="${t.nev}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow justify-between">
+                        <div>
+                            <span class="text-xs text-aura-500 font-semibold uppercase tracking-wider">${t.marka}</span>
+                            <h3 class="font-bold text-slate-800 text-sm mt-1 cursor-pointer hover:text-aura-600" onclick="termekReszletek(${t.id})">${t.nev}</h3>
+                            <p class="text-xs text-slate-500 mt-1 line-clamp-2">${t.leiras}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-extrabold text-aura-700 text-base">${t.ar.toLocaleString('hu-HU')} Ft</span>
+                            <button onclick="termekReszletek(${t.id})" class="bg-aura-50 text-aura-700 hover:bg-aura-600 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition">Részletek</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function kategoriaSzures(kat) {
+            kivalasztottKategoria = kat;
+            document.querySelectorAll('.kat-btn').forEach(btn => {
+                if (btn.innerText.includes(kat) || (kat === 'Mind' && btn.innerText.includes('Összes'))) {
+                    btn.className = "kat-btn bg-aura-600 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition";
+                } else {
+                    btn.className = "kat-btn bg-white text-slate-600 border border-slate-200 hover:border-aura-300 px-5 py-2.5 rounded-xl font-medium text-sm transition";
+                }
+            });
+            navigalj('katalogus');
+            katalogusFrissitese();
+        }
+
+        function termekReszletek(id) {
+            const termek = termekek.find(t => t.id === id);
+            const tartalom = document.getElementById("termek-reszlet-tartalom");
+
+            tartalom.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="relative">
+                        <img src="${termek.kep}" alt="${termek.nev}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';" class="w-full h-96 object-cover rounded-2xl shadow-md">
+                        ${termek.akcio ? '<span class="absolute top-4 left-4 bg-aura-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">AKCIÓS TERMÉK</span>' : ''}
+                    </div>
+                    <div>
+                        <span class="text-sm text-aura-600 font-bold uppercase tracking-wider">${termek.marka} • ${termek.kategoria}</span>
+                        <h2 class="text-3xl font-extrabold text-slate-800 mt-2">${termek.nev}</h2>
+                        <div class="text-2xl font-extrabold text-aura-600 mt-4">${termek.ar.toLocaleString('hu-HU')} Ft</div>
+                        <p class="text-slate-600 mt-4 text-sm leading-relaxed">${termek.leirasBovebb}</p>
+                        <div class="bg-aura-50 p-4 rounded-xl mt-6 border border-aura-100">
+                            <h4 class="font-bold text-aura-800 text-xs uppercase tracking-wider mb-1">Használati útmutató:</h4>
+                            <p class="text-xs text-slate-600">${termek.használat}</p>
+                        </div>
+                        <div class="mt-8 flex gap-4">
+                            <button onclick="kosarbaTesz(${termek.id})" class="flex-1 bg-aura-600 hover:bg-aura-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+                                🛒 Kosárba Teszem
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            navigalj('reszletek');
+        }
+
+        function kosarbaTesz(id) {
+            const termek = termekek.find(t => t.id === id);
+            const benne = kosar.find(item => item.id === id);
+            if (benne) {
+                benne.db++;
+            } else {
+                kosar.push({ ...termek, db: 1 });
+            }
+            kosarFrissitese();
+            alert(`${termek.nev} hozzáadva a kosárhoz!`);
+        }
+
+        function kosarFrissitese() {
+            const szamlalo = document.getElementById("kosar-szamlalo");
+            const kosarLista = document.getElementById("kosar-lista");
+            const reszosszegEl = document.getElementById("kosar-reszosszeg");
+            const vegosszegEl = document.getElementById("kosar-vegosszeg");
+
+            const osszDb = kosar.reduce((sum, item) => sum + item.db, 0);
+            szamlalo.innerText = osszDb;
+
+            if (kosar.length === 0) {
+                kosarLista.innerHTML = `<p class="text-center py-8 text-slate-400">A kosarad jelenleg üres.</p>`;
+                reszosszegEl.innerText = "0 Ft";
+                vegosszegEl.innerText = "0 Ft";
+                return;
+            }
+
+            let vegosszeg = 0;
+            kosarLista.innerHTML = kosar.map(item => {
+                const subtotal = item.ar * item.db;
+                vegosszeg += subtotal;
+                return `
+                    <div class="flex items-center justify-between py-4 border-b border-slate-100 last:border-none">
+                        <div class="flex items-center gap-4">
+                            <img src="${item.kep}" alt="${item.nev}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';" class="w-16 h-16 object-cover rounded-xl">
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">${item.nev}</h4>
+                                <p class="text-xs text-slate-500">${item.ar.toLocaleString('hu-HU')} Ft / db</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center border border-slate-200 rounded-lg overflow-hidden">
+                                <button onclick="dbValtoztatas(${item.id}, -1)" class="px-2.5 py-1 bg-slate-50 text-slate-600 hover:bg-slate-100 text-xs font-bold">-</button>
+                                <span class="px-3 text-xs font-bold text-slate-700">${item.db}</span>
+                                <button onclick="dbValtoztatas(${item.id}, 1)" class="px-2.5 py-1 bg-slate-50 text-slate-600 hover:bg-slate-100 text-xs font-bold">+</button>
+                            </div>
+                            <span class="font-bold text-slate-800 text-sm w-24 text-right">${subtotal.toLocaleString('hu-HU')} Ft</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            reszosszegEl.innerText = `${vegosszeg.toLocaleString('hu-HU')} Ft`;
+            vegosszegEl.innerText = `${vegosszeg.toLocaleString('hu-HU')} Ft`;
+        }
+
+        function dbValtoztatas(id, valtozas) {
+            const item = kosar.find(i => i.id === id);
+            if (!item) return;
+            item.db += valtozas;
+            if (item.db <= 0) {
+                kosar = kosar.filter(i => i.id !== id);
+            }
+            kosarFrissitese();
+        }
+
+        function kosarUritese() {
+            kosar = [];
+            kosarFrissitese();
+        }
+
+        // Kezdő inicializálás
+        katalogusFrissitese();
+    </script>
 </body>
 </html>
