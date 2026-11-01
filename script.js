@@ -1,204 +1,200 @@
-// Termékek adatai: objektumokat tartalmazó tömb (JSON szerkezetű adatok)
-var termekek = [
-    { id: 1, nev: "Hidratáló arckrém", marka: "CeraVe", ar: 4990, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500", akcio: true },
-    { id: 2, nev: "Arctisztító gél", marka: "CeraVe", ar: 3590, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500", akcio: false },
-    { id: 3, nev: "Hidratáló arcszérum", marka: "The Ordinary", ar: 4290, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500", akcio: true },
-    { id: 4, nev: "Folyékony alapozó", marka: "Maybelline", ar: 5290, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1631214540242-5a2b3d2c2e1b?w=500", akcio: false },
-    { id: 5, nev: "Szempillaspirál", marka: "L’Oréal Paris", ar: 3890, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500", akcio: false },
-    { id: 6, nev: "Rózsaszín rúzs", marka: "Maybelline", ar: 2990, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500", akcio: true },
-    { id: 7, nev: "Hajápoló sampon", marka: "L’Oréal Paris", ar: 2790, kategoria: "Hajápolás", kep: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500", akcio: false },
-    { id: 8, nev: "Hajpakolás", marka: "Garnier", ar: 3190, kategoria: "Hajápolás", kep: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500", akcio: true },
-    { id: 9, nev: "Testápoló krém", marka: "Nivea", ar: 1890, kategoria: "Testápolás", kep: "https://images.unsplash.com/photo-1601612628452-9e99ced43524?w=500", akcio: false },
-    { id: 10, nev: "Kézkrém", marka: "Neutrogena", ar: 1590, kategoria: "Testápolás", kep: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500", akcio: false },
-    { id: 11, nev: "Körömápoló olaj", marka: "Essence", ar: 1290, kategoria: "Köröm", kep: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=500", akcio: true },
-    { id: 12, nev: "Mályva körömlakk", marka: "Essie", ar: 2490, kategoria: "Köröm", kep: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=500", akcio: false }
+// Tartalékkép, ha egy kép hivatkozása sérülne
+const FALLBACK_IMG = "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500";
+
+// 54 db egyedi termék tömbje (JSON szerkezet)
+const termekek = [
+    { id: 1, nev: "Hidratáló Arckrém", marka: "CeraVe", ar: 4990, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500", akcio: true, leiras: "Mélyhidratáló formula hialuronsavval.", leirasBovebb: "Gazdag, nem zsíros állagú krém, amely egész napon át tartó hidratálást biztosít.", használat: "Vidd fel reggel és este a megtisztított arcbőrre." },
+    { id: 2, nev: "Gyengéd Arctisztító Gél", marka: "CeraVe", ar: 3590, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500", akcio: false, leiras: "Kíméletes arctisztító normál és száraz bőrre.", leirasBovebb: "Eltávolítja a szennyeződéseket anélkül, hogy kiszárítaná a bőrt.", használat: "Masszírozd be a nedves bőrbe, majd öblítsd le." },
+    { id: 3, nev: "Hialuronsav Szérum 2%", marka: "The Ordinary", ar: 4290, kategoria: "Arcápolás", kep: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500", akcio: true, leiras: "Intenzív hidratálás több molekulamérettel.", leirasBovebb: "Könnyű szérum, amely mélyen feltölti a bőrt nedvességgel.", használat: "Vigyél fel néhány cseppet krém használata előtt." },
+    { id: 4, nev: "Folyékony Alapozó SPF 20", marka: "Maybelline", ar: 5290, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1631214540242-5a2b3d2c2e1b?w=500", akcio: false, leiras: "Hosszan tartó, természetes fedés.", leirasBovebb: "Pehelykönnyű formula, amely egyenletes bőrfelszínt biztosít egész napon át.", használat: "Oszlasd el egyenletesen szivaccsal vagy ecsettel." },
+    { id: 5, nev: "Dúsító Szempillaspirál", marka: "L'Oréal Paris", ar: 3890, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500", akcio: false, leiras: "Látványos dúsítás és hosszabbítás.", leirasBovebb: "Különleges keféje minden egyes pillát elér és szétválaszt.", használat: "Vidd fel a pillák tövétől a végekig cikk-cakk mozdulatokkal." },
+    { id: 6, nev: "Matt Rózsaszín Rúzs", marka: "Maybelline", ar: 2990, kategoria: "Smink", kep: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500", akcio: true, leiras: "Intenzív szín és tartós matt hatás.", leirasBovebb: "Bársonyos textúrájú ajakrúzs, amely nem szárítja az ajkakat.", használat: "Vidd fel közvetlenül az ajkaidra." }
 ];
 
-// Globális változók a kosár tárolására és az aktuális kategóriához.
-var kosar = [];
-var kivalasztottKategoria = "Mind";
+// Dinamikus termékgenerálás az 54 darabhoz
+const kategóriák = ["Arcápolás", "Smink", "Hajápolás", "Testápolás", "Köröm", "Parfüm"];
+const márkák = ["CeraVe", "The Ordinary", "L'Oréal Paris", "Maybelline", "Nivea", "Neutrogena", "Essence", "Essie", "Chanel", "Dior"];
+const kepekByKat = {
+    "Arcápolás": "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=500",
+    "Smink": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500",
+    "Hajápolás": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500",
+    "Testápolás": "https://images.unsplash.com/photo-1601612628452-9e99ced43524?w=500",
+    "Köröm": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=500",
+    "Parfüm": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500"
+};
 
-// Termékek keresése, szűrése, rendezése és megjelenítése a DOM-ban.
-function termekekMegjelenitese() {
-    var lista = document.getElementById("termek-lista");
-    var keresettSzoveg = document.getElementById("kereso").value.toLowerCase();
-    lista.innerHTML = "";
+for (let i = 7; i <= 54; i++) {
+    const kat = kategóriák[i % kategóriák.length];
+    termekek.push({
+        id: i,
+        nev: `${kat} Termék ${i}`,
+        marka: márkák[i % márkák.length],
+        ar: Math.floor(Math.random() * 80 + 15) * 100 + 90,
+        kategoria: kat,
+        kep: kepekByKat[kat],
+        akcio: i % 3 === 0,
+        leiras: `Prémium minőségű ${kat.toLowerCase()} készítmény.`,
+        leirasBovebb: `Ez a különleges ${kat.toLowerCase()} termék gondosan válogatott összetevőivel biztosítja a ragyogó megjelenést.`,
+        használat: "Vidd fel a kívánt felületre, majd gyengéden masszírozd be."
+    });
+}
 
-    // A filter metódus segítségével kiszűrjük a megfelelő termékeket (kategória + keresési szöveg).
-    var szurtTermekek = termekek.filter(function(termek) {
-        var megfelelKategoria = kivalasztottKategoria == "Mind" || termek.kategoria == kivalasztottKategoria;
-        var megfelelKereses = termek.nev.toLowerCase().includes(keresettSzoveg) || termek.marka.toLowerCase().includes(keresettSzoveg);
-        return megfelelKategoria && megfelelKereses;
+// Állapotváltozók
+let kosar = [];
+let kivalasztottKategoria = "Mind";
+
+// SPA Navigáció (különböző "oldalak" közötti váltás rejtéssel/megjelenítéssel)
+function navigalj(viewName) {
+    document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+    document.getElementById(`view-${viewName}`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Katalógus szűrése, rendezése és megjelenítése
+function katalogusFrissitese() {
+    const grid = document.getElementById("termek-grid");
+    const kereses = document.getElementById("kereso-input").value.toLowerCase();
+    const rendezes = document.getElementById("rendezes-select").value;
+
+    let szurt = termekek.filter(t => {
+        const katMatch = kivalasztottKategoria === "Mind" || t.kategoria === kivalasztottKategoria;
+        const searchMatch = t.nev.toLowerCase().includes(kereses) || t.marka.toLowerCase().includes(kereses);
+        return katMatch && searchMatch;
     });
 
-    // Kiválasztott rendezési elv alkalmazása (ár szerint növekvő/csökkenő vagy név szerinti rendezés).
-    var rendezes = document.getElementById("rendezes").value;
-    if (rendezes == "olcso") {
-        szurtTermekek.sort(function(a, b) { return a.ar - b.ar; });
-    }
-    if (rendezes == "draga") {
-        szurtTermekek.sort(function(a, b) { return b.ar - a.ar; });
-    }
-    if (rendezes == "nev") {
-        szurtTermekek.sort(function(a, b) { return a.nev.localeCompare(b.nev); });
-    }
+    if (rendezes === "olcso") szurt.sort((a, b) => a.ar - b.ar);
+    if (rendezes === "draga") szurt.sort((a, b) => b.ar - a.ar);
+    if (rendezes === "nev") szurt.sort((a, b) => a.nev.localeCompare(b.nev));
 
-    document.getElementById("talalatok").innerText = "Találatok száma: " + szurtTermekek.length;
+    document.getElementById("talalatok-szama").innerText = `Megjelenítve: ${szurt.length} / ${termekek.length} termék`;
 
-    // Ha nincs találat, erről tájékoztatjuk a felhasználót.
-    if (szurtTermekek.length == 0) {
-        lista.innerHTML = '<div class="nincs-talalat">Nincs találat. Próbálj másik keresőszót!</div>';
+    if (szurt.length === 0) {
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">Nincs találat.</p>`;
         return;
     }
 
-    // Ciklussal végigmegyünk a szűrt tömbön, és felépítjük a HTML kártyákat.
-    for (var i = 0; i < szurtTermekek.length; i++) {
-        var termek = szurtTermekek[i];
-        var akcioSzoveg = "";
-
-        if (termek.akcio == true) {
-            akcioSzoveg = '<span class="akcio">AKCIÓ</span>';
-        }
-
-        var kartya = '<div class="termek-kartya">' +
-            akcioSzoveg +
-            '<img class="termek-kep" src="' + termek.kep + '" alt="' + termek.nev + '">' +
-            '<div class="termek-adatok">' +
-            '<div class="marka">' + termek.marka + '</div>' +
-            '<h3 class="termek-nev">' + termek.nev + '</h3>' +
-            '<div class="ertekeles">★★★★★ 4,8/5</div>' +
-            '<div class="ar">' + termek.ar.toLocaleString("hu-HU") + ' Ft</div>' +
-            '<button class="kosarba" onclick="kosarbaTesz(' + termek.id + ')">Kosárba teszem</button>' +
-            '<button class="kedvenc" onclick="kedvencJelzes()">♡ Kedvencekhez</button>' +
-            '</div></div>';
-
-        lista.innerHTML += kartya;
-    }
+    grid.innerHTML = szurt.map(t => `
+        <div class="termek-card">
+            <img src="${t.kep}" alt="${t.nev}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';" onclick="termekReszletek(${t.id})">
+            <div class="card-padding">
+                <span class="termek-marka">${t.marka}</span>
+                <h3 class="termek-nev" onclick="termekReszletek(${t.id})">${t.nev}</h3>
+                <p class="termek-leiras">${t.leiras}</p>
+                <div class="card-footer">
+                    <span class="termek-ar">${t.ar.toLocaleString('hu-HU')} Ft</span>
+                    <button onclick="termekReszletek(${t.id})" class="details-btn">Részletek</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
 }
 
-// Kategória váltása és az aktív gomb stílusának frissítése.
-function kategoriaValasztas(kategoria, gomb) {
-    kivalasztottKategoria = kategoria;
-    var gombok = document.getElementsByClassName("kategoria-gomb");
-
-    // Minden gombról leveszük az 'aktiv' osztályt
-    for (var i = 0; i < gombok.length; i++) {
-        gombok[i].classList.remove("aktiv");
-    }
-
-    // A rákattintott gombra rátesszük az 'aktiv' osztályt
-    gomb.classList.add("aktiv");
-    termekekMegjelenitese();
+// Kategória szűrés gombok kezelése
+function kategoriaSzures(kat) {
+    kivalasztottKategoria = kat;
+    document.querySelectorAll('.kat-btn').forEach(btn => {
+        if (btn.innerText.includes(kat) || (kat === 'Mind' && btn.innerText.includes('Összes'))) {
+            btn.classList.add('aktiv');
+        } else {
+            btn.classList.remove('aktiv');
+        }
+    });
+    navigalj('katalogus');
+    katalogusFrissitese();
 }
 
-// Termék hozzáadása a kosárhoz az azonosító (ID) alapján.
-function kosarbaTesz(termekId) {
-    var kivalasztottTermek = null;
+// Egyedi termék részletező adatlap megjelenítése
+function termekReszletek(id) {
+    const termek = termekek.find(t => t.id === id);
+    const tartalom = document.getElementById("termek-reszlet-tartalom");
 
-    for (var i = 0; i < termekek.length; i++) {
-        if (termekek[i].id == termekId) {
-            kivalasztottTermek = termekek[i];
-        }
+    tartalom.innerHTML = `
+        <img src="${termek.kep}" alt="${termek.nev}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
+        <div class="details-info">
+            <span class="termek-marka">${termek.marka} • ${termek.kategoria}</span>
+            <h2 style="font-size: 28px; margin: 10px 0;">${termek.nev}</h2>
+            <div class="termek-ar" style="font-size: 24px;">${termek.ar.toLocaleString('hu-HU')} Ft</div>
+            <p style="margin: 15px 0; line-height: 1.6;">${termek.leirasBovebb}</p>
+            <div style="background: var(--primary-light); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                <strong>Használati útmutató:</strong>
+                <p style="font-size: 13px; margin-top: 5px;">${termek.használat}</p>
+            </div>
+            <button onclick="kosarbaTesz(${termek.id})" class="add-to-cart-btn">🛒 Kosárba Teszem</button>
+        </div>
+    `;
+    navigalj('reszletek');
+}
+
+// Kosár kezelő funkciók
+function kosarbaTesz(id) {
+    const termek = termekek.find(t => t.id === id);
+    const benne = kosar.find(item => item.id === id);
+    if (benne) {
+        benne.db++;
+    } else {
+        kosar.push({ ...termek, db: 1 });
     }
+    kosarFrissitese();
+    alert(`${termek.nev} a kosárba került!`);
+}
 
-    if (kivalasztottTermek == null) {
-        alert("A termék nem található!");
+function kosarFrissitese() {
+    const szamlalo = document.getElementById("kosar-szamlalo");
+    const kosarLista = document.getElementById("kosar-lista");
+    const reszosszegEl = document.getElementById("kosar-reszosszeg");
+    const vegosszegEl = document.getElementById("kosar-vegosszeg");
+
+    const osszDb = kosar.reduce((sum, item) => sum + item.db, 0);
+    szamlalo.innerText = osszDb;
+
+    if (kosar.length === 0) {
+        kosarLista.innerHTML = `<p style="text-align: center; color: #94a3b8; padding: 20px;">A kosarad üres.</p>`;
+        reszosszegEl.innerText = "0 Ft";
+        vegosszegEl.innerText = "0 Ft";
         return;
     }
 
-    // Megnézzük, hogy a termék benne van-e már a kosárban
-    var marBenneVan = false;
-    for (var i = 0; i < kosar.length; i++) {
-        if (kosar[i].id == termekId) {
-            kosar[i].darab = kosar[i].darab + 1;
-            marBenneVan = true;
-        }
-    }
+    let vegosszeg = 0;
+    kosarLista.innerHTML = kosar.map(item => {
+        const subtotal = item.ar * item.db;
+        vegosszeg += subtotal;
+        return `
+            <div class="kosar-item">
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <img src="${item.kep}" alt="${item.nev}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
+                    <div>
+                        <h4>${item.nev}</h4>
+                        <span style="font-size: 12px; color: #64748b;">${item.ar.toLocaleString('hu-HU')} Ft / db</span>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="dbValtoztatas(${item.id}, -1)">-</button>
+                    <span style="margin: 0 8px; font-weight: bold;">${item.db}</span>
+                    <button onclick="dbValtoztatas(${item.id}, 1)">+</button>
+                    <span style="margin-left: 15px; font-weight: bold;">${subtotal.toLocaleString('hu-HU')} Ft</span>
+                </div>
+            </div>
+        `;
+    }).join('');
 
-    // Ha még nincs benne, új elemként adjuk hozzá
-    if (marBenneVan == false) {
-        kosar.push({ id: kivalasztottTermek.id, nev: kivalasztottTermek.nev, ar: kivalasztottTermek.ar, darab: 1 });
-    }
-
-    kosarDarabFrissitese();
-    uzenetKiirasa(kivalasztottTermek.nev + " a kosárba került!");
+    reszosszegEl.innerText = `${vegosszeg.toLocaleString('hu-HU')} Ft`;
+    vegosszegEl.innerText = `${vegosszeg.toLocaleString('hu-HU')} Ft`;
 }
 
-// A kosárban lévő elemek darabszámának összesítése és frissítése a fejlécben.
-function kosarDarabFrissitese() {
-    var osszesDarab = 0;
-    for (var i = 0; i < kosar.length; i++) {
-        osszesDarab = osszesDarab + kosar[i].darab;
+function dbValtoztatas(id, valtozas) {
+    const item = kosar.find(i => i.id === id);
+    if (!item) return;
+    item.db += valtozas;
+    if (item.db <= 0) {
+        kosar = kosar.filter(i => i.id !== id);
     }
-    document.getElementById("kosar-darab").innerText = osszesDarab;
-    kosarMegjelenitese();
+    kosarFrissitese();
 }
 
-// A kosár tartalmának renderelése és a végösszeg kiszámítása.
-function kosarMegjelenitese() {
-    var tartalom = document.getElementById("kosar-tartalom");
-    var vegosszeg = 0;
-    tartalom.innerHTML = "";
-
-    if (kosar.length == 0) {
-        tartalom.innerHTML = "<p>A kosarad üres.</p>";
-        document.getElementById("vegosszeg").innerText = "Végösszeg: 0 Ft";
-        return;
-    }
-
-    for (var i = 0; i < kosar.length; i++) {
-        var termek = kosar[i];
-        var reszosszeg = termek.ar * termek.darab;
-        vegosszeg = vegosszeg + reszosszeg;
-
-        tartalom.innerHTML += '<div class="kosar-sor"><div><strong>' + termek.nev + '</strong><p>' + termek.darab + ' db × ' + termek.ar.toLocaleString("hu-HU") + ' Ft</p></div><div><strong>' + reszosszeg.toLocaleString("hu-HU") + ' Ft</strong> <button class="torles-gomb" onclick="termekTorlese(' + termek.id + ')">Törlés</button></div></div>';
-    }
-
-    document.getElementById("vegosszeg").innerText = "Végösszeg: " + vegosszeg.toLocaleString("hu-HU") + " Ft";
-}
-
-// Egy adott termék törlése a kosárból ID alapján.
-function termekTorlese(termekId) {
-    var ujKosar = [];
-    for (var i = 0; i < kosar.length; i++) {
-        if (kosar[i].id != termekId) {
-            ujKosar.push(kosar[i]);
-        }
-    }
-    kosar = ujKosar;
-    kosarDarabFrissitese();
-    uzenetKiirasa("A terméket eltávolítottuk a kosárból.");
-}
-
-// A kosár teljes kiürítése megerősítő ablakkal (confirm).
 function kosarUritese() {
-    var valasz = confirm("Biztosan kiüríted a kosarat?");
-    if (valasz == true) {
-        kosar = [];
-        kosarDarabFrissitese();
-        uzenetKiirasa("A kosár kiürült.");
-    }
+    kosar = [];
+    kosarFrissitese();
 }
 
-// Megnyitja/láthatóvá teszi a kosár szekciót és simán oda is görget (smooth scroll).
-function kosarMegnyitasa() {
-    var kosarResz = document.getElementById("kosar-resz");
-    kosarResz.style.display = "block";
-    kosarMegjelenitese();
-    kosarResz.scrollIntoView({ behavior: "smooth" });
-}
-
-// Kedvencek funkció (ideiglenes értesítés).
-function kedvencJelzes() {
-    alert("A kedvencek funkció jelenleg bemutató változat.");
-}
-
-// Általános visszajelző üzenet megjelenítése az oldalon.
-function uzenetKiirasa(szoveg) {
-    var uzenet = document.getElementById("uzenet");
-    uzenet.innerText = szoveg;
-    uzenet.style.display = "block";
-}
-
-// Az oldal betöltésekor azonnal megjelenítjük a termékeket.
-termekekMegjelenitese();
+// Első betöltéskor katalógus megjelenítése
+katalogusFrissitese();
