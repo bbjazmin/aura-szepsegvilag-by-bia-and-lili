@@ -417,11 +417,25 @@ select {
     .details-card img { width: 100%; }
 }
 
-/* Márkaszűrő */
-.marka-szuro { margin: 22px 0 16px; }
-.marka-szuro h3 { margin: 0 0 10px; color: var(--primary-hover); font-size: 16px; }
-.marka-gombok { display: flex; flex-wrap: wrap; gap: 9px; }
-.marka-btn { border: 1px solid var(--border-color); background: #fff; color: var(--primary-hover); padding: 8px 13px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: .2s; }
-.marka-btn:hover, .marka-btn.aktiv { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
-.marka-link { display: inline-block; border: 0; background: transparent; padding: 0; cursor: pointer; text-align: left; }
-.marka-link:hover { text-decoration: underline; }
+
+/* Jól látható márkaválasztó */
+.marka-szuro {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 18px 0 22px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+.marka-szuro label {
+    font-weight: bold;
+    color: var(--primary-hover);
+}
+.marka-szuro select {
+    min-width: 220px;
+    cursor: pointer;
+    background: #fff;
+}
