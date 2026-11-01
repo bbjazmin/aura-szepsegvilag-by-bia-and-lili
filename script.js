@@ -247,7 +247,7 @@ function katalogusFrissitese() {
     if (rendezes === "draga") szurt.sort((a, b) => b.ar - a.ar);
     if (rendezes === "nev") szurt.sort((a, b) => a.nev.localeCompare(b.nev));
 
-    document.getElementById("talalatok-szama").innerText = `Megjelenítve: ${szurt.length} / ${termekek.length} termék`;
+    document.getElementById("talalatok-szama").innerText = `Megjelenítve: ${szurt.length} termék`;
 
     if (szurt.length === 0) {
         grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">Nincs találat.</p>`;
