@@ -518,3 +518,98 @@ function kosarUritese() {
 
 // Kezdő inicializálás
 katalogusFrissitese();
+
+
+// ======================================================
+// KÜLSŐ TERMÉK API – külön navigációs oldal
+// DummyJSON: bemutató szépségápolási termékadatok
+// ======================================================
+
+let apiTermekLista = [];
+let apiBetoltesFolyamatban = false;
+
+async function apiTermekekBetoltese() {
+    const allapot = document.getElementById("api-allapot");
+    const grid = document.getElementById("api-termek-grid");
+
+    if (!allapot || !grid || apiBetoltesFolyamatban) return;
+    if (apiTermekLista.length > 0) {
+        apiTermekekSzurese();
+        return;
+    }
+
+    apiBetoltesFolyamatban = true;
+    allapot.textContent = "Termékek betöltése...";
+    grid.innerHTML = "";
+
+    try {
+        const kategoriak = ["beauty", "fragrances", "skin-care"];
+        const valaszok = await Promise.all(
+            kategoriak.map(kategoria =>
+                fetch(`https://dummyjson.com/products/category/${kategoria}?limit=0`)
+            )
+        );
+
+        if (valaszok.some(valasz => !valasz.ok)) {
+            throw new Error("Az API jelenleg nem érhető el.");
+        }
+
+        const adatok = await Promise.all(valaszok.map(valasz => valasz.json()));
+        apiTermekLista = adatok.flatMap(adat => adat.products || []);
+
+        if (apiTermekLista.length === 0) {
+            allapot.textContent = "Most nem találhatók termékek.";
+            return;
+        }
+
+        apiTermekekSzurese();
+    } catch (hiba) {
+        allapot.textContent = "Nem sikerült betölteni a termékeket. Ellenőrizd az internetkapcsolatot, majd próbáld újra.";
+        console.error("API hiba:", hiba);
+    } finally {
+        apiBetoltesFolyamatban = false;
+    }
+}
+
+function apiTermekekSzurese() {
+    const grid = document.getElementById("api-termek-grid");
+    const allapot = document.getElementById("api-allapot");
+    const kereso = document.getElementById("api-kereso");
+    const kategoria = document.getElementById("api-kategoria");
+
+    if (!grid || !allapot || !kereso || !kategoria) return;
+
+    const keresettSzoveg = kereso.value.toLowerCase().trim();
+    const kivalasztott = kategoria.value;
+
+    const szurtTermekek = apiTermekLista.filter(termek => {
+        const nev = (termek.title || "").toLowerCase();
+        const marka = (termek.brand || "").toLowerCase();
+        const kategoriaEgyezik = kivalasztott === "Mind" || termek.category === kivalasztott;
+        const szovegEgyezik = nev.includes(keresettSzoveg) || marka.includes(keresettSzoveg);
+        return kategoriaEgyezik && szovegEgyezik;
+    });
+
+    allapot.textContent = `Találatok: ${szurtTermekek.length} termék`;
+
+    if (szurtTermekek.length === 0) {
+        grid.innerHTML = '<p class="api-ures">Nincs a keresésnek megfelelő termék.</p>';
+        return;
+    }
+
+    grid.innerHTML = szurtTermekek.map(termek => `
+        <article class="termek-card api-termek-card">
+            <img src="${termek.thumbnail || FALLBACK_IMG}" alt="${termek.title || "Termék"}"
+                 onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
+            <div class="card-padding">
+                <span class="termek-marka">${termek.brand || "Ismeretlen márka"}</span>
+                <h3 class="termek-nev">${termek.title || "Névtelen termék"}</h3>
+                <p class="termek-leiras">${termek.description || "Nincs leírás."}</p>
+                <div class="card-footer">
+                    <span class="termek-ar">${Number(termek.price || 0).toFixed(2)} $</span>
+                    <span class="api-ertekeles">★ ${termek.rating || "—"}</span>
+                </div>
+            </div>
+        </article>
+    `).join("");
+}
