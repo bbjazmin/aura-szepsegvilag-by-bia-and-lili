@@ -522,11 +522,17 @@ katalogusFrissitese();
 
 // ======================================================
 // KÜLSŐ TERMÉK API – külön navigációs oldal
-// DummyJSON: bemutató szépségápolási termékadatok
+// DummyJSON termékek + aktuális USD/HUF árfolyam
 // ======================================================
 
 let apiTermekLista = [];
 let apiBetoltesFolyamatban = false;
+let usdHufArfolyam = 360; // Tartalék árfolyam, ha az árfolyam API nem érhető el.
+
+function forintAr(usdAr) {
+    const forint = Math.round(Number(usdAr || 0) * usdHufArfolyam);
+    return forint.toLocaleString("hu-HU") + " Ft";
+}
 
 async function apiTermekekBetoltese() {
     const allapot = document.getElementById("api-allapot");
@@ -543,19 +549,39 @@ async function apiTermekekBetoltese() {
     grid.innerHTML = "";
 
     try {
-        const kategoriak = ["beauty", "fragrances", "skin-care"];
-        const valaszok = await Promise.all(
-            kategoriak.map(kategoria =>
-                fetch(`https://dummyjson.com/products/category/${kategoria}?limit=0`)
-            )
-        );
+        // Több szépségápolási és kiegészítő kategória betöltése.
+        const kategoriak = [
+            "beauty",
+            "fragrances",
+            "skin-care",
+            "womens-jewellery",
+            "sunglasses"
+        ];
 
-        if (valaszok.some(valasz => !valasz.ok)) {
-            throw new Error("Az API jelenleg nem érhető el.");
+        const termekValasz = await fetch("https://dummyjson.com/products?limit=0");
+        if (!termekValasz.ok) {
+            throw new Error("A termék API jelenleg nem érhető el.");
         }
 
-        const adatok = await Promise.all(valaszok.map(valasz => valasz.json()));
-        apiTermekLista = adatok.flatMap(adat => adat.products || []);
+        const termekAdatok = await termekValasz.json();
+
+        // Csak a kiválasztott, az oldal témájához illő kategóriákat mutatjuk.
+        apiTermekLista = (termekAdatok.products || []).filter(termek =>
+            kategoriak.includes(termek.category)
+        );
+
+        // Aktuális dollár-forint árfolyam lekérése.
+        try {
+            const arfolyamValasz = await fetch("https://api.frankfurter.dev/v1/latest?base=USD&symbols=HUF");
+            if (arfolyamValasz.ok) {
+                const arfolyamAdat = await arfolyamValasz.json();
+                if (arfolyamAdat.rates && arfolyamAdat.rates.HUF) {
+                    usdHufArfolyam = arfolyamAdat.rates.HUF;
+                }
+            }
+        } catch (arfolyamHiba) {
+            console.warn("Az árfolyam nem tölthető be, tartalék árfolyam használata.", arfolyamHiba);
+        }
 
         if (apiTermekLista.length === 0) {
             allapot.textContent = "Most nem találhatók termékek.";
@@ -590,7 +616,7 @@ function apiTermekekSzurese() {
         return kategoriaEgyezik && szovegEgyezik;
     });
 
-    allapot.textContent = `Találatok: ${szurtTermekek.length} termék`;
+    allapot.textContent = `Találatok: ${szurtTermekek.length} termék | Az árak forintban, átváltva jelennek meg.`;
 
     if (szurtTermekek.length === 0) {
         grid.innerHTML = '<p class="api-ures">Nincs a keresésnek megfelelő termék.</p>';
@@ -606,7 +632,7 @@ function apiTermekekSzurese() {
                 <h3 class="termek-nev">${termek.title || "Névtelen termék"}</h3>
                 <p class="termek-leiras">${termek.description || "Nincs leírás."}</p>
                 <div class="card-footer">
-                    <span class="termek-ar">${Number(termek.price || 0).toFixed(2)} $</span>
+                    <span class="termek-ar">${forintAr(termek.price)}</span>
                     <span class="api-ertekeles">★ ${termek.rating || "—"}</span>
                 </div>
             </div>
