@@ -30,6 +30,7 @@
                 <button onclick="kategoriaSzures('Arcápolás')">Arcápolás</button>
                 <button onclick="kategoriaSzures('Smink')">Smink</button>
                 <button onclick="kategoriaSzures('Parfüm')">Parfümök</button>
+                <button onclick="navigalj('api-termekek'); apiTermekekBetoltese()">✨ További termékek</button>
             </nav>
 
             <button onclick="navigalj('kosar')" class="kosar-btn">
@@ -112,6 +113,29 @@
 
             <p id="talalatok-szama" class="results-count"></p>
             <div id="termek-grid" class="termek-grid"></div>
+        </section>
+
+        <!-- KÜLSŐ API-BÓL BETÖLTÖTT TERMÉKEK KÜLÖN OLDALON -->
+        <section id="view-api-termekek" class="page-view">
+            <div class="api-fejlec">
+                <span class="hero-tag">Külső termékadatbázis</span>
+                <h2>További szépségápolási termékek</h2>
+                <p>Az alábbi termékek egy külső API segítségével töltődnek be.</p>
+            </div>
+
+            <div class="api-kereso">
+                <input type="text" id="api-kereso" placeholder="Keress a külső termékek között..." oninput="apiTermekekSzurese()">
+                <select id="api-kategoria" onchange="apiTermekekSzurese()">
+                    <option value="Mind">Minden kategória</option>
+                    <option value="beauty">Smink és szépségápolás</option>
+                    <option value="fragrances">Illatok</option>
+                    <option value="skin-care">Bőrápolás</option>
+                </select>
+            </div>
+
+            <p id="api-allapot" class="api-allapot">Termékek betöltése...</p>
+            <div id="api-termek-grid" class="termek-grid"></div>
+            <p class="api-megjegyzes">Megjegyzés: ezek bemutató adatok, nem valódi bolti ajánlatok. Az árak az API által megadott pénznemben szerepelnek.</p>
         </section>
 
         <!-- 2. TERMÉK RÉSZLETEI NÉZET -->
