@@ -217,6 +217,126 @@ const termekek = [
         "leiras": "A Cheirosa 62 édes, gourmand illatú testpermet a Sol de Janeirótól.",
         "leirasBovebb": "A Sol de Janeiro Cheirosa 62 testpermetet jellegzetes, édes és napfényes illatvilága teszi különlegessé. A pisztáciás és karamellás hangulatú jegyek meleg, desszertszerű karaktert adnak neki. Könnyed testpermetként használható, ha finom illatfelhőt szeretnél magad körül. A narancssárga flakon a márka egyik könnyen felismerhető terméke.",
         "használat": "Permetezd a testre megfelelő távolságból, a szem és az arc környékét elkerülve. Ha érzékeny a bőröd, először kis bőrfelületen próbáld ki."
+    },
+    {
+        "id": 19,
+        "nev": "Sensibio H2O Micellás Arctisztító Víz",
+        "marka": "Bioderma",
+        "ar": 5490,
+        "kategoria": "Arcápolás",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/395babde92d6.png",
+        "akcio": false,
+        "leiras": "Micellás arctisztító víz érzékeny bőrre, amely sminkeltávolításra és napi tisztításra is használható.",
+        "leirasBovebb": "A Bioderma Sensibio H2O az érzékeny bőrök tisztítására kifejlesztett micellás víz, amely a smink és a napi szennyeződések eltávolítását segíti. Micellái magukhoz vonzzák a bőr felszínén lévő szennyeződéseket, így a dörzsölés elkerülhető. Jellegzetes, rózsaszín kupakos változata sokak számára könnyen felismerhető a polcokon. Arc, ajak és szemkörnyék tisztítására is alkalmas, a szemmel való közvetlen érintkezést kerülve.",
+        "használat": "Vattakorongra önts egy keveset, majd finoman töröld át az arcot. Szem környékén óvatosan használd, és ha szükséges, öblítsd le."
+    },
+    {
+        "id": 20,
+        "nev": "Anthelios SPF50+ Napfényvédő",
+        "marka": "La Roche-Posay",
+        "ar": 7990,
+        "kategoria": "Arcápolás",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b32a1d9c5b88.webp",
+        "akcio": true,
+        "leiras": "Magas fényvédő faktorú (SPF50+) arckrém a napsugárzás elleni védelemhez.",
+        "leirasBovebb": "A La Roche-Posay Anthelios napfényvédője magas, SPF50+ faktorú védelmet nyújt a napsugárzás káros hatásaival szemben, így a mindennapi fényvédelem része lehet. Könnyű állaga jól eloszlatható az arcbőrön, és a bemutatott változat érzékeny bőrre is készült. A rendszeres fényvédelem fontos eleme a bőrápolási rutinnak, különösen a naposabb hónapokban. Mindig kövesd a csomagoláson feltüntetett használati útmutatót és a javasolt megújítási időközöket.",
+        "használat": "A napozás előtt vidd fel a bőrre egyenletesen, és a csomagolás útmutatója szerint újítsd meg a réteget, különösen úszás vagy izzadás után."
+    },
+    {
+        "id": 21,
+        "nev": "Studio Fix Fluid Alapozó",
+        "marka": "MAC",
+        "ar": 7490,
+        "kategoria": "Smink",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/feff8a3fd77d.jpg",
+        "akcio": false,
+        "leiras": "Folyékony alapozó tartós, matt hatású fedéssel, több árnyalatban.",
+        "leirasBovebb": "A MAC Studio Fix Fluid alapozó tartós, matt megjelenést kínáló sminkalap, amely több árnyalatban érhető el. Folyékony állaga ecsettel, sminkszivaccsal vagy ujjakkal is felvihető, és a fedés a felvitt mennyiség szabályozásával finomhangolható. Hosszú viselési ideje miatt népszerű választás mindennapi és alkalmi sminkhez egyaránt. A megfelelő árnyalat kiválasztásához érdemes a bőrtónust természetes fényben összehasonlítani.",
+        "használat": "Kis mennyiséget vigyél az arc közepére, majd egyenletesen dolgozd el kifelé. A kívánt fedésnek megfelelően adagold."
+    },
+    {
+        "id": 22,
+        "nev": "Stay Matte Sajtolttpor",
+        "marka": "Maybelline",
+        "ar": 2490,
+        "kategoria": "Smink",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/dba5c310bbe2.jpg",
+        "akcio": false,
+        "leiras": "Sajtolttpor a fényesebb bőrterületek mattításához és az alapozó fixálásához.",
+        "leirasBovebb": "A Maybelline Stay Matte sajtolttpor a fényesebb bőrterületek mattítására és a smink fixálására készült. Finom állaga segít egységesebb, kevésbé csillogó megjelenést adni az arcbőrnek, ezért az alapozó után rétegezve is használható. Kompakt kiszerelése könnyen elfér a táskában, így napközben is lehetővé teszi az utólagos retusálást. A pontos árnyalatot érdemes a bőrtónushoz igazítani.",
+        "használat": "Az alapozó felvitele után, vagy szükség szerint egy tiszta púderecsettel vigyél fel vékony réteget a fényesebb bőrterületekre."
+    },
+    {
+        "id": 23,
+        "nev": "Fructis Full Repair Hajpakolás",
+        "marka": "Garnier Fructis",
+        "ar": 3490,
+        "kategoria": "Hajápolás",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/27b9ca04df11.jpg",
+        "akcio": false,
+        "leiras": "Ápoló hajpakolás az igénybevett, száraz hajhossz regenerálásához.",
+        "leirasBovebb": "A Garnier Fructis Full Repair hajpakolás az igénybevett és száraznak tűnő haj ápolására készült. Krémes állaga könnyen eloszlatható a hajhosszon, és segít puhább, könnyebben kifésülhetővé tenni a tincseket. A Fructis termékcsalád jellegzetes, zöld színű csomagolása könnyen felismerhető. Rendszeres használata a hajmosási rutin részeként támogathatja az ápoltabb megjelenést.",
+        "használat": "Hajmosás után oszlasd el a nedves hajhosszon, hagyd hatni a csomagoláson jelzett ideig, majd alaposan öblítsd le."
+    },
+    {
+        "id": 24,
+        "nev": "BC Moisture Kick Hajpakolás",
+        "marka": "Schwarzkopf",
+        "ar": 4490,
+        "kategoria": "Hajápolás",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c2f0e428ee54.jpg",
+        "akcio": true,
+        "leiras": "Hidratáló hajpakolás a száraz, hajlékonyságukat vesztett tincsek ápolásához.",
+        "leirasBovebb": "A Schwarzkopf BC Moisture Kick hajpakolás a száraz és rugalmasságát vesztett haj ápolására készült. Hidratáló összetételű formulája segít puhábbá és könnyebben kifésülhetővé tenni a hajhosszt. Krémes állaga egyenletesen eloszlató a nedves tincseken, így kényelmesen beilleszthető a hajápolási rutinba. A haj állapotától függően érdemes heti néhány alkalommal használni.",
+        "használat": "Hajmosás után vigyél fel a nedves hajhosszon, hagyd hatni a javasolt ideig, majd alaposan öblítsd le."
+    },
+    {
+        "id": 25,
+        "nev": "UreaRepair Rich Testápoló",
+        "marka": "Eucerin",
+        "ar": 4290,
+        "kategoria": "Testápolás",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/338cd155b00f.jpg",
+        "akcio": false,
+        "leiras": "Gazdag, karbamidot tartalmazó testápoló nagyon száraz bőrre.",
+        "leirasBovebb": "Az Eucerin UreaRepair Rich testápoló nagyon száraz és igénybevett bőr mindennapi ápolására készült. Karbamidot és további hidratáló összetevőket tartalmazó formulája segít csökkenteni a bőr száraz, húzódó érzetét. Gazdag, krémes állaga jól eloszlatható, és hosszan tartó kényelmes bőrérzetet adhat. Rendszeres használata ajánlott zuhanyzás vagy fürdés után, tiszta bőrre.",
+        "használat": "Zuhanyzás után tiszta, száraz bőrre vidd fel, és körkörös mozdulatokkal masszírozd be, amíg teljesen felszívódik."
+    },
+    {
+        "id": 26,
+        "nev": "Hidratáló Testápoló",
+        "marka": "CeraVe",
+        "ar": 4990,
+        "kategoria": "Testápolás",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ae7f9df5e8ca.png",
+        "akcio": false,
+        "leiras": "Ceramidokat és hialuronsavat tartalmazó testápoló a mindennapi bőrápoláshoz.",
+        "leirasBovebb": "A CeraVe Hidratáló Testápoló ceramidokat és hialuronsavat tartalmazó formulával készült a mindennapi bőrápoláshoz. Könnyen eloszlatható állaga segíthet visszaadni a bőr kényelmes, puhának tűnő tapintását. Arcra és testre is használható, így praktikus része lehet a napi ápolási rutinnak. Különösen száraz bőr esetén érdemes rendszeresen alkalmazni.",
+        "használat": "Zuhanyzás után tiszta bőrre vigyél fel egy réteget, és addig masszírozd be, amíg felszívódik. Szükség szerint naponta többször is használhatod."
+    },
+    {
+        "id": 27,
+        "nev": "Infinite Shine Körömlakk",
+        "marka": "OPI",
+        "ar": 3990,
+        "kategoria": "Köröm",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a2c6b3cd49df.jpg",
+        "akcio": false,
+        "leiras": "Fényes, zselés hatású körömlakk a tartós manikűrhöz.",
+        "leirasBovebb": "Az OPI Infinite Shine körömlakk a zselés hatású, fényes manikűr megjelenését idézi hosszabb viselési idővel. A praktikus ecset segíti az egyenletes felvitelt, a vékony rétegek pedig az ápoltabb eredményt. A termékcsalád több árnyalatban érhető el, így különböző stílusokhoz és alkalmakhoz választható. A pontos színárnyalat a képernyő beállításaitól és a fényviszonyoktól eltérhet.",
+        "használat": "Tiszta, száraz körmökre vigyél fel egy vékony réteget, majd hagyd megszáradni. Erőteljesebb fedéshez használj második réteget."
+    },
+    {
+        "id": 28,
+        "nev": "CK One Eau de Toilette",
+        "marka": "Calvin Klein",
+        "ar": 12990,
+        "kategoria": "Parfüm",
+        "kep": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/03d03f0c4e7b.jpg",
+        "akcio": true,
+        "leiras": "Friss, uniszex illatú eau de toilette ikonikus, letisztult flakonban.",
+        "leirasBovebb": "A Calvin Klein CK One Eau de Toilette friss, könnyed illatvilágú, uniszex parfüm, amelyet sokan a citrusos, virágos jegyei miatt kedvelnek. Letisztult, átlátszó üvege könnyen felismerhető, a kompakt kiszerelés pedig praktikus utazáshoz is. Nappali és irodai viselethez egyaránt választható, ha visszafogott, mégis jelenlévő illatot szeretnél. Az illat intenzitása és tartóssága a bőrtípustól és a használat módjától is függ.",
+        "használat": "Kis mennyiséget permetezz a pulzuspontokra, például a csuklóra vagy a nyak oldalára. Ne fújd közvetlenül az arcra vagy a szem környékére."
     }
 ];
 
